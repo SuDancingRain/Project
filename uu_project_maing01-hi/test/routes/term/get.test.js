@@ -1,0 +1,11 @@
+import UU5 from "uu5g04";
+import uuProject from "uu_project_maing01-hi";
+
+const { shallow } = UU5.Test.Tools;
+
+describe(`uuProject.Routes.Term.Get`, () => {
+  it(`default props`, () => {
+    const wrapper = shallow(<uuProject.Routes.Term.Get />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});

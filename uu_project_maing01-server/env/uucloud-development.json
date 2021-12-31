@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "1.0.0",
+  "schemaSpecificationUri": "https://uuapp.plus4u.net/uu-bookkit-maing01/bef682626ed943f28cde360ccb325981/book/page?code=uuSubAppInstanceDescriptor",
+  "uuSubApp": {
+    "code": "UUN.BPMI21WFT07.MAING01",
+    "version": "0.1.0",
+    "name": "uunBpmi21wft07Maing01",
+    "description": "",
+    "license": "License Commercial",
+    "asidRequired": true,
+    "awidCount": 1,
+    "resourcePoolUri": "ues:UCL-BT:UUN_STUDENTS03_AWE",
+    "uuAppNodeSetMap": {
+      "CMD": {
+        "nodeSize": "G1_S",
+        "nodeCount": {
+          "min": 1,
+          "max": 1
+        },
+        "appPackUri": "ues:UCL-BT:UUN.BPMI21WFT07.MAING01/APPBOX-0.1.0:UUN.BPMI21WFT07.MAING01/CMD-PACK",
+        "runtimeStack": "UU.APPG01/APPSERVER_NODEJS_STACK-1.6"
+      }
+    },
+    "uuAppObjectStoreMap": {
+      "OSID_1": {
+        "technology": "MongoDB-4.0",
+        "size": 0.25,
+        "backup": false,
+        "alias": "primary"
+      }
+    },
+    "uuAppBinaryStoreMap": {
+      "BSID_1": {
+        "size": 0.25,
+        "alias": "binary"
+      }
+    },
+    "uuConfigMap": {
+      "asid_license_owner_list": [
+        "579-1272-5032-1"
+      ]
+    }
+  },
+  "uuSubAppInstance": {
+    "asid": "a8297898e59be60d72fbaf282fd68847",
+    "asidOwner": "579-1272-5032-1",
+    "awidList": [
+      {
+        "awid": "07ae0ebc2928a1baef07858e3e1e305e",
+        "awidOwner": "579-9383-2347-1"
+      }
+    ],
+    "uuAppObjectStoreMap": {
+      "OSID_1": {
+        "osid": "uzx78d9sfshtum7lml4ybyazd91xidjvi"
+      }
+    },
+    "uuAppBinaryStoreMap": {
+      "BSID_1": {
+        "bsid": "https://uuappg01-eu-c-3.plus4u.net/uu-appbinarystore-maing02/a093d128b5207149bad934f3e0eab408"
+      }
+    }
+  }
+}

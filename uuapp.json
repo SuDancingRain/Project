@@ -1,0 +1,438 @@
+{
+  "product": "uun_bpmi21wft07_maing01",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "ues:UCL-BT:OPR.RSP/APPBOXES",
+      "appDeploymentUri": null,
+      "uuCloudBaseUri": "https://sys-eu-c-3.plus4u.net",                        
+      "uuCloudLogStoreBaseUri": "https://cmd-eu-c-3.plus4u.net/118500965363973101/"
+    }
+  },
+  "uu_project_maing01-hi": {
+    "componentList": [
+      {
+        "code": "uuProject.Routes.Subject.Create",
+        "name": "Create",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Subject",
+          "Create"
+        ],
+        "docCode": "uuProjectRoutesSubjectCreate",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Subject.Create />"
+      },
+      {
+        "code": "uuProject.Routes.Subject.Edit",
+        "name": "Edit",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Subject",
+          "Edit"
+        ],
+        "docCode": "uuProjectRoutesSubjectEdit",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Subject.Edit />"
+      },
+      {
+        "code": "uuProject.Routes.Subject.Get",
+        "name": "Get",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Subject",
+          "Get"
+        ],
+        "docCode": "uuProjectRoutesSubjectGet",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Subject.Get />"
+      },
+      {
+        "code": "uuProject.Routes.Subject.Delete",
+        "name": "Delete",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Subject",
+          "Delete"
+        ],
+        "docCode": "uuProjectRoutesSubjectDelete",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Subject.Delete />"
+      },
+      {
+        "code": "uuProject.Routes.Subject.List",
+        "name": "List",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Subject",
+          "List"
+        ],
+        "docCode": "uuProjectRoutesSubjectList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Subject.List />"
+      },
+      {
+        "code": "uuProject.Routes.Term.List",
+        "name": "List",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Term",
+          "List"
+        ],
+        "docCode": "uuProjectRoutesTermList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Term.List />"
+      },
+      {
+        "code": "uuProject.Routes.Term.Delete",
+        "name": "Delete",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Term",
+          "Delete"
+        ],
+        "docCode": "uuProjectRoutesTermDelete",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Term.Delete />"
+      },
+      {
+        "code": "uuProject.Routes.Term.Create",
+        "name": "Create",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Term",
+          "Create"
+        ],
+        "docCode": "uuProjectRoutesTermCreate",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Term.Create />"
+      },
+      {
+        "code": "uuProject.Routes.Term.Get",
+        "name": "Get",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Term",
+          "Get"
+        ],
+        "docCode": "uuProjectRoutesTermGet",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Term.Get />"
+      },
+      {
+        "code": "uuProject.Routes.Term.Edit",
+        "name": "Edit",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Term",
+          "Edit"
+        ],
+        "docCode": "uuProjectRoutesTermEdit",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Term.Edit />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.Edit",
+        "name": "Edit",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "Edit"
+        ],
+        "docCode": "uuProjectRoutesAssignmentEdit",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.Edit />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.List",
+        "name": "List",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "List"
+        ],
+        "docCode": "uuProjectRoutesAssignmentList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.List />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.Create",
+        "name": "Create",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "Create"
+        ],
+        "docCode": "uuProjectRoutesAssignmentCreate",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.Create />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.Delete",
+        "name": "Delete",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "Delete"
+        ],
+        "docCode": "uuProjectRoutesAssignmentDelete",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.Delete />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.Get",
+        "name": "Get",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "Get"
+        ],
+        "docCode": "uuProjectRoutesAssignmentGet",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.Get />"
+      },
+      {
+        "code": "uuProject.Routes.Assignment.Submit",
+        "name": "Submit",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Assignment",
+          "Submit"
+        ],
+        "docCode": "uuProjectRoutesAssignmentSubmit",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Assignment.Submit />"
+      },
+      {
+        "code": "uuProject.Routes.Grade.Get",
+        "name": "Get",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Grade",
+          "Get"
+        ],
+        "docCode": "uuProjectRoutesGradeGet",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Grade.Get />"
+      },
+      {
+        "code": "uuProject.Routes.Grade.List",
+        "name": "List",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Grade",
+          "List"
+        ],
+        "docCode": "uuProjectRoutesGradeList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Grade.List />"
+      },
+      {
+        "code": "uuProject.Routes.Grade.Assignment",
+        "name": "Assignment",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Grade",
+          "Assignment"
+        ],
+        "docCode": "uuProjectRoutesGradeAssignment",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Grade.Assignment />"
+      },
+      {
+        "code": "uuProject.Routes.Person.Add",
+        "name": "Add",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "Add"
+        ],
+        "docCode": "uuProjectRoutesPersonAdd",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.Add />"
+      },
+      {
+        "code": "uuProject.Routes.Person.Edit",
+        "name": "Edit",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "Edit"
+        ],
+        "docCode": "uuProjectRoutesPersonEdit",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.Edit />"
+      },
+      {
+        "code": "uuProject.Routes.Person.Delete",
+        "name": "Delete",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "Delete"
+        ],
+        "docCode": "uuProjectRoutesPersonDelete",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.Delete />"
+      },
+      {
+        "code": "uuProject.Routes.Person.Get",
+        "name": "Get",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "Get"
+        ],
+        "docCode": "uuProjectRoutesPersonGet",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.Get />"
+      },
+      {
+        "code": "uuProject.Routes.Person.List",
+        "name": "List",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "List"
+        ],
+        "docCode": "uuProjectRoutesPersonList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.List />"
+      },
+      {
+        "code": "uuProject.Routes.Person.AddToSubject",
+        "name": "AddToSubject",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "AddToSubject"
+        ],
+        "docCode": "uuProjectRoutesPersonAddToSubject",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.AddToSubject />"
+      },
+      {
+        "code": "uuProject.Routes.Person.RemoveFromSubject",
+        "name": "RemoveFromSubject",
+        "tagList": [
+          "uuProject",
+          "Routes",
+          "Person",
+          "RemoveFromSubject"
+        ],
+        "docCode": "uuProjectRoutesPersonRemoveFromSubject",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<uuProject.Routes.Person.RemoveFromSubject />"
+      }
+    ]
+  },
+  "uu_project_maing01-server": {}
+}
