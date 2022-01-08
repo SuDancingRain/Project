@@ -78,6 +78,8 @@ export const ControlPanel = createVisualComponent({
         {child}
       </UU5.Common.Fragment>
     );
+    
+    
     //@@viewOff:render
   },
 });

@@ -9,6 +9,18 @@ const Lsi = {
       cs: "Vítejte",
       en: "Welcome",
     },
+    subject:{
+      cs:"List předmětů",
+      en:"List of subjects",
+    },
+    person:{
+      cs:"List uživatelů",
+      en:"List of users",
+    },
+    admin:{
+      cs:"Nástoje pro správce",
+      en:"Administration tools",
+    },
     about: {
       cs: "O aplikaci",
       en: "About Application",

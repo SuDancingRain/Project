@@ -2,8 +2,8 @@ import UU5 from "uu5g04";
 
 export const About = {
   about: {
-    cs: "Demo aplikace je šablona pro vývoj nových aplikací.",
-    en: "Demo application is a template for developing new applications.",
+    cs: "Aplikace týmu 7.",
+    en: "Team 7's application.",
   },
   licence: {
     termsOfUse: "https://unicorn.com/tou/your_product",
