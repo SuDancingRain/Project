@@ -15,6 +15,8 @@
 dist/
 dist-node/
 dist-esm/
+node_modules/
+public/
 target/
 doc/
 out/
