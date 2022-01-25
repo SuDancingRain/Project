@@ -51,19 +51,19 @@ export const Left = createVisualComponent({
           items={[
             { id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> },
             {
-              id:"subject",
-              href:"subject",
-              content:<UU5.Bricks.Lsi lsi={Lsi.left.subject} />
+              id:"subjectList",
+              href:"subjectList",
+              content:<UU5.Bricks.Lsi lsi={Lsi.left.subjectList} />
           },
           {
-            id:"person",
-            href:"person",
-            content:<UU5.Bricks.Lsi lsi={Lsi.left.person} />
+            id:"personList",
+            href:"personList",
+            content:<UU5.Bricks.Lsi lsi={Lsi.left.personList} />
         },
         {
-          id:"admin",
-          href:"admin",
-          content:<UU5.Bricks.Lsi lsi={Lsi.left.admin} />
+          id:"adminControl",
+          href:"adminControl",
+          content:<UU5.Bricks.Lsi lsi={Lsi.left.adminControl} />
       },
         ]}
 

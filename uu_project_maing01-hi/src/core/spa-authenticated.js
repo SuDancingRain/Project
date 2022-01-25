@@ -9,6 +9,13 @@ import Config from "./config/config";
 import Left from "./left";
 import Bottom from "./bottom";
 import Home from "../routes/home";
+import AdminControl from '../routes/admin-control';
+import SubjectList from '../routes/subject-list';
+import SubjectDetail from '../routes/subject-detail';
+import PersonList from '../routes/person-list';
+import PersonDetail from '../routes/person-detail';
+;
+
 //@@viewOff:imports
 
 const STATICS = {
@@ -26,6 +33,11 @@ const ROUTES = {
   "": DEFAULT_USE_CASE,
   home: { component: <Home /> },
   about: { component: <About /> },
+  adminControl: { component: <AdminControl /> },
+  subjectDetail: { component: <subjectDetail /> },
+  subjectList: { component: <subjectList /> },
+  personList: { component: <PersonList /> },
+  personDetail: { component: <PersonDetail /> },
   "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
   controlPanel: { component: <ControlPanel /> },
 };
