@@ -35,6 +35,9 @@ class GradeAbl {
   }
 
   async assignment(awid, dtoIn) {
+
+    //Checks the input of DtoIn and for unsuported keys
+
     let validationResult = this.validator.validate("gradeAssignmentDtoInType", dtoIn);
     let uuAppErrorMap = ValidationHelper.processValidationResult(
       dtoIn,
@@ -42,27 +45,40 @@ class GradeAbl {
       WARNINGS.assignmentUnsupportedKeys.code,
       Errors.Assignment.InvalidDtoIn
     );
+
     dtoIn.awid = awid
-    let dtoOut = await this.assignmentDao.get(awid,dtoIn.id);
+
+    //checks for assignment existence to which we attempt to add the grade record
+
+    let dtoOut = await this.assignmentDao.get(awid, dtoIn.id);
     if (!dtoOut) {
       throw new Errors.Assignment.AssignmentDoesNotExist(uuAppErrorMap, { assignmentId: dtoIn.id });
     }
-      try {
-        dtoOut = await this.dao.assignment(dtoIn);
-      } catch (e) {
-        if (e instanceof ObjectStoreError) { 
-          throw new Errors.Assignment.GradeDaoAssignmentFailed({uuAppErrorMap}, e);
-        }
-        throw e;
+
+    //attemps to add the grade record to the assignment Dao File
+
+    try {
+      dtoOut = await this.dao.assignment(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Assignment.GradeDaoAssignmentFailed({ uuAppErrorMap }, e);
       }
-  
+      throw e;
+    }
+
+    //returns the Dao record with errormap
+
     dtoOut.uuAppErrorMap = uuAppErrorMap;
+
     return dtoOut;
   }
 
   async get(awid, dtoIn) {
+
+    //Checks the input of DtoIn and for unsuported keys
+
     let validationResult = this.validator.validate("gradeGetDtoInType", dtoIn);
-    
+
     let uuAppErrorMap = ValidationHelper.processValidationResult(
       dtoIn,
       validationResult,
@@ -70,49 +86,58 @@ class GradeAbl {
       Errors.Get.InvalidDtoIn
     );
 
+    //Check for grade existence  
+
     let dtoOut = await this.dao.get(awid, dtoIn.id);
     if (!dtoOut) {
       throw new Errors.Get.GradeDoesNotExist(uuAppErrorMap, { gradeId: dtoIn.id });
     }
 
-    dtoOut.uuAppErrorMap = uuAppErrorMap;
-
-    
+    //returns Dao record with errormap
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
+
     return dtoOut;
   }
 
   async list(awid, dtoIn) {
+
+    //Checks the input of DtoIn and for unsuported keys
+
     let validationResult = this.validator.validate("assignmentListDtoInType", dtoIn);
-    
+
     let uuAppErrorMap = ValidationHelper.processValidationResult(
       dtoIn,
       validationResult,
       WARNINGS.listUnsupportedKeys.code,
       Errors.List.InvalidDtoIn
     );
-    
+
+    //Checks DtoIn for unfilled values which it fills from the default constant set in this file
+
     if (!dtoIn.order) dtoIn.order = DEFAULTS.order;
     if (!dtoIn.pageInfo) dtoIn.pageInfo = {};
     if (!dtoIn.pageInfo.pageSize) dtoIn.pageInfo.pageSize = DEFAULTS.pageSize;
     if (!dtoIn.pageInfo.pageIndex) dtoIn.pageInfo.pageIndex = DEFAULTS.pageIndex;
-    
-    
-    let dtoOut ;
+
+    //list filter base on Subject, assignment and term ID
+
+    let dtoOut;
     if (dtoIn.subjectList) {
       dtoOut = await this.dao.listBySubjectIdList(awid, dtoIn.subjectList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
     }
     if (dtoIn.termList) {
       dtoOut = await this.dao.listByTermIdList(awid, dtoIn.termList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
-    }if (dtoIn.assignmentList) {
+    } if (dtoIn.assignmentList) {
       dtoOut = await this.dao.listByAssignemntIdList(awid, dtoIn.assignemntList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
-    }else {
+    } else {
       dtoOut = await this.dao.list(awid, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
     }
 
-    
+    //return of filtered Dao file and errormap
+
     dtoOut.uuAppErrorMap = uuAppErrorMap;
+
     return dtoOut;
   }
 
