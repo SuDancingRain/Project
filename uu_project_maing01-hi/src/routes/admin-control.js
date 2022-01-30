@@ -6,7 +6,7 @@ import "uu_plus4u5g01-bricks";
 import Calls from "../calls.js";
 import Config from "./config/config.js";
 
-import Create from "./term/create.js";
+import Get from "./subject/get.js";
 //@@viewOff:imports
 
 const STATICS = {
@@ -37,7 +37,7 @@ export const AdminControl = createVisualComponent({
             <div {...attrs}>
                 <UU5.Bricks.Row>
                     <UU5.Bricks.Column>
-                        <UU5.Bricks.Button onClick={Calls.createTerm}>Create Term</UU5.Bricks.Button>
+                        <UU5.Bricks.Button onClick={Calls.getSubject}>Get Subject</UU5.Bricks.Button>
                     </UU5.Bricks.Column>
                 </UU5.Bricks.Row>
             </div>
