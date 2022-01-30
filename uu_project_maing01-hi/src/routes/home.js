@@ -10,6 +10,7 @@ import Calls from "../calls";
 import Config from "./config/config.js";
 import Lsi from "../config/lsi.js";
 import WelcomeRow from "../bricks/welcome-row.js";
+import StudentCard from "../bricks/student-card";
 //@@viewOff:imports
 
 const STATICS = {
@@ -19,7 +20,7 @@ const STATICS = {
 };
 
 const CLASS_NAMES = {
-  welcomeRow: () => Config.Css.css`
+  StudentCard: () => Config.Css.css`
     padding: 56px 0 20px;
     max-width: 624px;
     margin: 0 auto;
@@ -59,12 +60,14 @@ export const Home = createVisualComponent({
       <div {...attrs}>
         <Plus4U5.App.ArtifactSetter territoryBaseUri="" artifactId="" />
 
-        <UU5.Bricks.Row className={CLASS_NAMES.welcomeRow()}>
-         missing Component StudentCard
-        </UU5.Bricks.Row>
+      <UU5.Bricks.Row className={CLASS_NAMES.StudentCard()}>
+      <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
+        <StudentCard></StudentCard>
+        </UU5.Bricks.Column>
+      </UU5.Bricks.Row>
 
         <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
+          <UU5.Bricks.Column colWidth="x-2 s-9" style="text-align:center">
         <UU5.Forms.Text label="search" placeholder="search for specific" />
         </UU5.Bricks.Column>
         </UU5.Bricks.Row>

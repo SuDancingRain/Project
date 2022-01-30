@@ -3,7 +3,10 @@ import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import { createVisualComponent } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
+import Calls from "../calls.js";
 import Config from "./config/config.js";
+
+import Create from "./term/create.js";
 //@@viewOff:imports
 
 const STATICS = {
@@ -33,7 +36,9 @@ export const AdminControl = createVisualComponent({
         return (
             <div {...attrs}>
                 <UU5.Bricks.Row>
-                    Admin Control
+                    <UU5.Bricks.Column>
+                        <UU5.Bricks.Button onClick={Calls.createTerm}>Create Term</UU5.Bricks.Button>
+                    </UU5.Bricks.Column>
                 </UU5.Bricks.Row>
             </div>
         );
