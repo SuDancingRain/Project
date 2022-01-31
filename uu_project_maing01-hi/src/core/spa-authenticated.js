@@ -14,6 +14,32 @@ import SubjectList from '../routes/subject-list';
 import SubjectDetail from '../routes/subject-detail';
 import PersonList from '../routes/person-list';
 import PersonDetail from '../routes/person-detail';
+import CreateTerm from '../routes/term/create';
+import DeleteTerm from '../routes/term/delete';
+import EditTerm from '../routes/term/edit';
+import ListTerm from '../routes/term/list';
+import GetTerm from '../routes/term/get';
+import CreateSubject from '../routes/subject/create';
+import DeleteSubject from '../routes/subject/delete';
+import EditSubject from '../routes/subject/edit';
+import ListSubject from '../routes/subject/list';
+import GetSubject from '../routes/subject/get';
+import SubmitAssignment from '../routes/assignment/submit';
+import CreateAssignment from '../routes/assignment/create';
+import DeleteAssignment from '../routes/assignment/delete';
+import EditAssignment from '../routes/assignment/edit';
+import ListAssignment from '../routes/assignment/list';
+import GetAssignment from '../routes/assignment/get';
+import AddPerson from '../routes/person/add';
+import DeletePerson from '../routes/person/delete';
+import EditPerson from '../routes/person/edit';
+import ListPerson from '../routes/person/list';
+import GetPerson from '../routes/person/get';
+import AddToSubjectPerson from '../routes/person/add-to-subject';
+import RemoveFromSubjectPerson from '../routes/person/remove-from-subject';
+import ListGrade from '../routes/grade/list';
+import GetGrade from '../routes/grade/get';
+import AssignmentGrade from '../routes/grade/assignment';
 ;
 
 //@@viewOff:imports
@@ -33,11 +59,44 @@ const ROUTES = {
   "": DEFAULT_USE_CASE,
   home: { component: <Home /> },
   about: { component: <About /> },
+
   adminControl: { component: <AdminControl /> },
   subjectDetail: { component: <SubjectDetail /> },
   subjectList: { component: <SubjectList /> },
   personList: { component: <PersonList /> },
   personDetail: { component: <PersonDetail /> },
+
+  createTerm:{component: <CreateTerm />},
+  deleteTerm:{component: <DeleteTerm />},
+  editTerm:{component: <EditTerm />},
+  listTerm:{component: <ListTerm />},
+  getTerm:{component: <GetTerm />},
+
+  createSubject:{component: <CreateSubject />},
+  deleteSubject:{component: <DeleteSubject />},
+  editSubject:{component: <EditSubject />},
+  listSubject:{component: <ListSubject />},
+  getSubject:{component: <GetSubject />},
+
+  addPerson:{component: <AddPerson />},
+  deletePerson:{component: <DeletePerson />},
+  editPerson:{component: <EditPerson />},
+  listPerson:{component: <ListPerson />},
+  getPerson:{component: <GetPerson />},
+  addToSubjectPerson:{component: <AddToSubjectPerson />},
+  removeFromSubjectPerson:{component: <RemoveFromSubjectPerson />},
+
+  getGrade:{component: <GetGrade />},
+  listGrade:{component: <ListGrade />},
+  assignmentGrade:{component: <AssignmentGrade />},
+
+  createAssignment:{component: <CreateAssignment />},
+  deleteAssignment:{component: <DeleteAssignment />},
+  editAssignment:{component: <EditAssignment />},
+  listAssignment:{component: <ListAssignment />},
+  getAssignment:{component: <GetAssignment />},
+  submitAssignment:{component: <SubmitAssignment />},
+  
   "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
   controlPanel: { component: <ControlPanel /> },
 };

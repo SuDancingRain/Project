@@ -21,6 +21,10 @@ const Lsi = {
       cs:"Nástoje pro správce",
       en:"Administration tools",
     },
+    createTerm:{
+      cs:"Vytvor term",
+      en:"Craete Term",
+    },
     about: {
       cs: "O aplikaci",
       en: "About Application",

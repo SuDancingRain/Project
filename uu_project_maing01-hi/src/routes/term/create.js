@@ -2,6 +2,7 @@
 import UU5 from "uu5g04";
 import { createComponent } from "uu5g04-hooks";
 import Config from "./config/config";
+import Calls from "../../calls";
 //@@viewOff:imports
 
 const STATICS = {
@@ -10,7 +11,7 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-export const Create = createComponent({
+export const CreateTerm = createComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -38,12 +39,12 @@ export const Create = createComponent({
 
     return currentNestingLevel ? (
       <div {...attrs}>
-        <div>Component {STATICS.displayName}</div>
-        {UU5.Utils.Content.getChildren(props.children, props, STATICS)}
-      </div>
-    ) : null;
+      <div>Component {STATICS.displayName}</div>
+      {UU5.Utils.Content.getChildren(props.children, props, STATICS)}
+    </div>
+  ) : null;
     //@@viewOff:render
   },
 });
 
-export default Create;
+export default CreateTerm;
