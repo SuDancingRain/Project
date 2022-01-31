@@ -5,7 +5,7 @@ import { createVisualComponent } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls";
-import Lsi from "./subject-lsi";
+import Lsi from "./Subject-lsi";
 //@@viewOff:imports
 
 const STATICS = {
@@ -48,132 +48,7 @@ export const SubjectList = createVisualComponent({
               <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
             </UU5.Bricks.Card>
           </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
-
-        <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
-
-        <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
+          </UU5.Bricks.Row>
             </div>
         );
         //@@viewOff:render
