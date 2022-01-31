@@ -79,7 +79,9 @@ export const StudentCard = createVisualComponent({
                         <UU5.BlockLayout.Row>
                             <UU5.BlockLayout.Column width={150}>
                                 <UU5.BlockLayout.Text weight="secondary">
-                                    Plus4U Person
+                                    <UU5.Common.Identity>
+                                        {({ identity }) => <UU5.Bricks.Header level="2" content={identity.name} />}
+                                    </UU5.Common.Identity>
                                 </UU5.BlockLayout.Text>
                             </UU5.BlockLayout.Column>
                             <UU5.BlockLayout.Column>
