@@ -9,6 +9,7 @@ import Config from "./config/config.js";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "AssignmentDetail",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 

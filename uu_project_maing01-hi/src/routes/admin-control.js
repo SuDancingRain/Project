@@ -17,8 +17,7 @@ import Lsi from "../config/lsi.js";
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "AdminControl",
-
-  netsingLevel: "bigBoxCollection"
+  netsingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
@@ -26,9 +25,11 @@ export const AdminControl = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
+  propTypes: {},
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
+  defaultProps: {},
   //@@viewOff:defaultProps
 
   render(props) {

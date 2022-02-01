@@ -9,7 +9,7 @@ import Lsi from "../routes/term-lsi"
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "TermForm",
-  netsingLevel: "bigBoxCollection"
+  netsingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
@@ -17,9 +17,11 @@ export const TermForm = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
+  propTypes: {},
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
+  defaultProps: {},
   //@@viewOff:defaultProps
 
   render(props) {
@@ -43,7 +45,7 @@ export const TermForm = createVisualComponent({
           >
           </UU5.Forms.Text>
           <UU5.Forms.Select
-          name={"termSeason"}
+            name={"termSeason"}
             label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
             required
           >

@@ -9,17 +9,20 @@ import Config from "./config/config.js";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "SubjectDetail",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 
 export const SubjectDetail = createVisualComponent({
     ...STATICS,
 
-    //@@viewOn:propTypes
-    //@@viewOff:propTypes
+  //@@viewOn:propTypes
+  propTypes: {},
+  //@@viewOff:propTypes
 
-    //@@viewOn:defaultProps
-    //@@viewOff:defaultProps
+  //@@viewOn:defaultProps
+  defaultProps: {},
+  //@@viewOff:defaultProps
 
     render(props) {
         //@@viewOn:private

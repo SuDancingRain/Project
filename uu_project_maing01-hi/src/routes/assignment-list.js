@@ -11,6 +11,7 @@ import Lsi from "./Assignment-lsi";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "AssignmentList",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 

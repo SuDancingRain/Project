@@ -8,6 +8,7 @@ import Config from "./config/config.js";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "StudentCard",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 
@@ -24,10 +25,13 @@ export const StudentCard = createVisualComponent({
     ...STATICS,
 
     //@@viewOn:propTypes
+    propTypes: {},
     //@@viewOff:propTypes
-
+  
     //@@viewOn:defaultProps
+    defaultProps: {},
     //@@viewOff:defaultProps
+  
 
     render(props) {
         //@@viewOn:private
@@ -41,12 +45,12 @@ export const StudentCard = createVisualComponent({
         return (
             <div {...attrs}>
                 <UU5.Bricks.Accordion>
-                    <UU5.Bricks.Panel  header="Student Index" colorSchema="blue" iconExpanded="mdi-chevron-up" iconCollapsed="mdi-chevron-down">
+                    <UU5.Bricks.Panel header="Student Index" colorSchema="blue" iconExpanded="mdi-chevron-up" iconCollapsed="mdi-chevron-down">
 
                         <UU5.BlockLayout.Row weight="primary">
-                        <UU5.Common.Identity>
-                                    {({ identity }) => <UU5.Bricks.Text level="2" content={identity.name} />}
-                                </UU5.Common.Identity>
+                            <UU5.Common.Identity>
+                                {({ identity }) => <UU5.Bricks.Text level="2" content={identity.name} />}
+                            </UU5.Common.Identity>
                         </UU5.BlockLayout.Row>
                         <UU5.BlockLayout.Block>
                             <UU5.BlockLayout.Row>
@@ -56,9 +60,9 @@ export const StudentCard = createVisualComponent({
                                     </UU5.BlockLayout.Text>
                                 </UU5.BlockLayout.Column>
                                 <UU5.BlockLayout.Column>
-                                <UU5.Common.Identity>
-                                    {({ identity }) => <UU5.Bricks.Text level="2" content={identity.email} />}
-                                </UU5.Common.Identity>
+                                    <UU5.Common.Identity>
+                                        {({ identity }) => <UU5.Bricks.Text level="2" content={identity.email} />}
+                                    </UU5.Common.Identity>
                                 </UU5.BlockLayout.Column>
                             </UU5.BlockLayout.Row>
                         </UU5.BlockLayout.Block>
@@ -115,7 +119,7 @@ export const StudentCard = createVisualComponent({
                                 </UU5.BlockLayout.Text>
                             </UU5.BlockLayout.Column>
                             <UU5.BlockLayout.Column>
-                            <UU5.Common.Identity>
+                                <UU5.Common.Identity>
                                     {({ identity }) => <UU5.Bricks.Text level="2" content={identity.uuIdentity} />}
                                 </UU5.Common.Identity>
                             </UU5.BlockLayout.Column>
@@ -159,7 +163,7 @@ export const StudentCard = createVisualComponent({
                                 </UU5.BlockLayout.Text>
                             </UU5.BlockLayout.Column>
                             <UU5.BlockLayout.Column>
-                            <UU5.Common.Identity>
+                                <UU5.Common.Identity>
                                     {({ identity }) => <UU5.Bricks.Text level="2" content={identity.uuIdentity} />}
                                 </UU5.Common.Identity>
                             </UU5.BlockLayout.Column>

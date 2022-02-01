@@ -16,6 +16,7 @@ import StudentCard from "../bricks/student-card";
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "Home",
+  netsingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
@@ -42,9 +43,11 @@ export const Home = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
+  propTypes: {},
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
+  defaultProps: {},
   //@@viewOff:defaultProps
 
   render(props) {

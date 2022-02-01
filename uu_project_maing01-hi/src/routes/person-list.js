@@ -11,17 +11,20 @@ import Lsi from "./person-lsi";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "PersonList",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 
 export const PersonList = createVisualComponent({
     ...STATICS,
 
-    //@@viewOn:propTypes
-    //@@viewOff:propTypes
+  //@@viewOn:propTypes
+  propTypes: {},
+  //@@viewOff:propTypes
 
-    //@@viewOn:defaultProps
-    //@@viewOff:defaultProps
+  //@@viewOn:defaultProps
+  defaultProps: {},
+  //@@viewOff:defaultProps
 
     render(props) {
         //@@viewOn:private

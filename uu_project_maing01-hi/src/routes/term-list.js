@@ -9,35 +9,38 @@ import Lsi from "./Term-lsi";
 //@@viewOff:imports
 
 const STATICS = {
-    //@@viewOn:statics
-    displayName: Config.TAG + "TermList",
-    //@@viewOff:statics
+  //@@viewOn:statics
+  displayName: Config.TAG + "TermList",
+  netsingLevel: "bigBoxCollection",
+  //@@viewOff:statics
 };
 
 export const TermList = createVisualComponent({
-    ...STATICS,
+  ...STATICS,
 
-    //@@viewOn:propTypes
-    //@@viewOff:propTypes
+  //@@viewOn:propTypes
+  propTypes: {},
+  //@@viewOff:propTypes
 
-    //@@viewOn:defaultProps
-    //@@viewOff:defaultProps
+  //@@viewOn:defaultProps
+  defaultProps: {},
+  //@@viewOff:defaultProps
 
-    render(props) {
-        //@@viewOn:private
-        //@@viewOff:private
+  render(props) {
+    //@@viewOn:private
+    //@@viewOff:private
 
-        //@@viewOn:interface
-        //@@viewOff:interface
+    //@@viewOn:interface
+    //@@viewOff:interface
 
-        //@@viewOn:render
-        const attrs = UU5.Common.VisualComponent.getAttrs(props);
-        return (
-            <div {...attrs}>
-                <UU5.Bricks.Row>
+    //@@viewOn:render
+    const attrs = UU5.Common.VisualComponent.getAttrs(props);
+    return (
+      <div {...attrs}>
+        <UU5.Bricks.Row>
           <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
-        <UU5.Forms.Text label="search" placeholder="search for specific" />
-        </UU5.Bricks.Column>
+            <UU5.Forms.Text label="search" placeholder="search for specific" />
+          </UU5.Bricks.Column>
         </UU5.Bricks.Row>
 
         <UU5.Bricks.Row>
@@ -48,11 +51,11 @@ export const TermList = createVisualComponent({
               <UU5.Bricks.Button colorSchema="green">Term page</UU5.Bricks.Button>
             </UU5.Bricks.Card>
           </UU5.Bricks.Column>
-          </UU5.Bricks.Row>
-            </div>
-        );
-        //@@viewOff:render
-    },
+        </UU5.Bricks.Row>
+      </div>
+    );
+    //@@viewOff:render
+  },
 });
 
 export default TermList;

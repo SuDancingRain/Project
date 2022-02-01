@@ -11,17 +11,20 @@ import Lsi from "./Grade-lsi";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "GradeList",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 
 export const GradeList = createVisualComponent({
     ...STATICS,
 
-    //@@viewOn:propTypes
-    //@@viewOff:propTypes
+  //@@viewOn:propTypes
+  propTypes: {},
+  //@@viewOff:propTypes
 
-    //@@viewOn:defaultProps
-    //@@viewOff:defaultProps
+  //@@viewOn:defaultProps
+  defaultProps: {},
+  //@@viewOff:defaultProps
 
     render(props) {
         //@@viewOn:private

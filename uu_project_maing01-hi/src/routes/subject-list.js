@@ -5,23 +5,26 @@ import { createVisualComponent } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls";
-import Lsi from "./Subject-lsi";
+import Lsi from "./subject-lsi";
 //@@viewOff:imports
 
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "SubjectList",
+    netsingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 
 export const SubjectList = createVisualComponent({
     ...STATICS,
 
-    //@@viewOn:propTypes
-    //@@viewOff:propTypes
+  //@@viewOn:propTypes
+  propTypes: {},
+  //@@viewOff:propTypes
 
-    //@@viewOn:defaultProps
-    //@@viewOff:defaultProps
+  //@@viewOn:defaultProps
+  defaultProps: {},
+  //@@viewOff:defaultProps
 
     render(props) {
         //@@viewOn:private
