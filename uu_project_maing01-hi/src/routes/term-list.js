@@ -2,6 +2,7 @@
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import { createVisualComponent } from "uu5g04-hooks";
+import Uu5Tiles from "uu5tilesg02";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls";
@@ -88,7 +89,7 @@ export const TermList = createVisualComponent({
             <UU5.Forms.Text label="search" placeholder="search for specific" />
           </UU5.Bricks.Column>
         </UU5.Bricks.Row>
-
+        <Uu5Tiles.List columns={[]} data={[]} rowAlignment="center" rowHeight={150} />
         <UU5.Bricks.Row>
           <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
             <UU5.Bricks.Card>
