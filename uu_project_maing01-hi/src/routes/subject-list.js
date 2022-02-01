@@ -9,14 +9,14 @@ import Lsi from "./subject-lsi";
 //@@viewOff:imports
 
 const STATICS = {
-    //@@viewOn:statics
-    displayName: Config.TAG + "SubjectList",
-    netsingLevel: "bigBoxCollection",
-    //@@viewOff:statics
+  //@@viewOn:statics
+  displayName: Config.TAG + "SubjectList",
+  netsingLevel: "bigBoxCollection",
+  //@@viewOff:statics
 };
 
 export const SubjectList = createVisualComponent({
-    ...STATICS,
+  ...STATICS,
 
   //@@viewOn:propTypes
   propTypes: {},
@@ -26,24 +26,67 @@ export const SubjectList = createVisualComponent({
   defaultProps: {},
   //@@viewOff:defaultProps
 
-    render(props) {
-        //@@viewOn:private
-        //@@viewOff:private
+  render(props) {
+    //@@viewOn:private
+    //@@viewOff:private
 
-        //@@viewOn:interface
-        //@@viewOff:interface
+    //@@viewOn:interface
+    //@@viewOff:interface
 
-        //@@viewOn:render
-        const className =Config.Css.css``;
-        const attrs = UU5.Common.VisualComponent.getAttrs(props,className);
-        const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
+    //@@viewOn:render
+    const className = Config.Css.css``;
+    const attrs = UU5.Common.VisualComponent.getAttrs(props, className);
+    const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
 
-        return currentNestingLevel ? (
-            <div {...attrs}>
-                <UU5.Bricks.Row>
+    // function getCollumns() {
+    //   return [
+    //     {
+    //       header: <UU5.Bricks.Lsi lsi={Lsi.name} />,
+    //       cell: (cellProps) => cellProps.data.name,
+    //     },
+    //     {
+    //       header: <UU5.Bricks.Lsi lsi={Lsi.date} />,
+    //       cell: (cellProps) => {
+    //         if (cellProps.data.date) {
+    //           return new Date(cellProps.data.date).toLocaleString(UU5.Common.Tools.getLanguage());
+    //         } else {
+    //           return "";
+    //         }
+    //       },
+    //     },
+
+    //     {
+    //       header: "Author",
+    //       cell: (cellProps) => cellProps.data.author,
+    //     },
+    //     {
+    //       header: "Cover",
+    //       cell: (cellProps) => <UU5.Bricks.Image height="100px" src={cellProps.data.cover} />,
+    //     },
+    //     {
+    //       cell: (cellProps) => {
+    //         return (
+    //           <>
+    //           {/*<UU5.Bricks.Button colorSchema="blue" onClick={() => setFormOpened(true)}><UU5.Bricks.Icon icon="mdi-pencil" /></UU5.Bricks.Button>*/}
+    //           <UU5.Bricks.Button colorSchema="blue" onClick= {() => setSelectedBook(cellProps.data)}>
+    //             <UU5.Bricks.Icon icon="mdi-pencil" />
+    //           </UU5.Bricks.Button>
+    //           <UU5.Bricks.Button colorSchema="red" onClick= {() => setBookToDelete(cellProps.data)}>
+    //             <UU5.Bricks.Icon icon="mdi-close" />
+    //           </UU5.Bricks.Button>
+    //           </>
+    //         );
+    //       },
+    //     },
+    //   ];
+    // }
+
+    return currentNestingLevel ? (
+      <div {...attrs}>
+        <UU5.Bricks.Row>
           <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
-        <UU5.Forms.Text label="search" placeholder="search for specific" />
-        </UU5.Bricks.Column>
+            <UU5.Forms.Text label="search" placeholder="search for specific" />
+          </UU5.Bricks.Column>
         </UU5.Bricks.Row>
 
         <UU5.Bricks.Row>
@@ -54,11 +97,11 @@ export const SubjectList = createVisualComponent({
               <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
             </UU5.Bricks.Card>
           </UU5.Bricks.Column>
-          </UU5.Bricks.Row>
-            </div>
-        ):null;
-        //@@viewOff:render
-    },
+        </UU5.Bricks.Row>
+      </div>
+    ) : null;
+    //@@viewOff:render
+  },
 });
 
 export default SubjectList;
