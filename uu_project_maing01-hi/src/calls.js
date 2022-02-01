@@ -37,138 +37,142 @@ let Calls = {
     await Calls.initWorkspace(dtoInData);
     return await Calls.getWorkspace();
   },
-
-  createSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("subject/create");
+Subject:{
+  create(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("subject/create", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  deleteSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("subject/delete");
+  delete(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("subject/delete", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  editSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("subject/edit");
+  edit(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("subject/edit", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  getSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("subject/get");
+  get(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("subject/get", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  listSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("subject/list");
+  list(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("subject/list", baseUri);
+    return Calls.call("get", commandUri, dtoIn);
+  },
+},
+Term:{
+  create(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("term/create", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  delete(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("term/delete", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  edit(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("term/edit", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  get(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("term/get", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  createTerm(dtoIn) {
-    let commandUri = Calls.getCommandUri("term/create");
+  list(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("term/list", baseUri);
+    return Calls.call("get", commandUri, dtoIn);
+  },
+},
+Person:{
+  add(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/add", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  deleteTerm(dtoIn) {
-    let commandUri = Calls.getCommandUri("term/delete");
+  delete(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/delete", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  editTerm(dtoIn) {
-    let commandUri = Calls.getCommandUri("term/edit");
+  edit(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/edit", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  getTerm(dtoIn) {
-    let commandUri = Calls.getCommandUri("term/get");
+  get(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/get", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  listTerm(dtoIn) {
-    let commandUri = Calls.getCommandUri("term/list");
-    return Calls.call("get", commandUri, dtoIn);
-  },
-
-  addPerson(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/add");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  deletePerson(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/delete");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  editPerson(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/edit");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  getPerson(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/get");
-    return Calls.call("get", commandUri, dtoIn);
-  },
-
-  listPerson(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/list");
+  list(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/list", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
 
-  addToSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/addToSubject");
+  addToSubject(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/addToSubject", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  removeFromSubject(dtoIn) {
-    let commandUri = Calls.getCommandUri("person/removeFromSubject");
+  removeFromSubject(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("person/removeFromSubject", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+},
+Grade:{
+  assignment(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("grade/assignment", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  assignmentGrade(dtoIn) {
-    let commandUri = Calls.getCommandUri("grade/assignment");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  getGrade(dtoIn) {
-    let commandUri = Calls.getCommandUri("grade/get");
+  get(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("grade/get", baseUri)
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  listGrade(dtoIn) {
-    let commandUri = Calls.getCommandUri("grade/list");
+  list(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("grade/list", baseUri);
+    return Calls.call("get", commandUri, dtoIn);
+  },
+},
+Assignment:{
+  create(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/create", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  delete(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/delete", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  edit(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/edit", baseUri);
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  get(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/get", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  createAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/create");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  deleteAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/delete");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  editAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/edit");
-    return Calls.call("post", commandUri, dtoIn);
-  },
-
-  getAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/get");
+  list(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/list", baseUri);
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  listAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/list");
-    return Calls.call("get", commandUri, dtoIn);
-  },
-
-  submitAssignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("assignment/submit");
+  submit(dtoIn, baseUri) {
+    let commandUri = Calls.getCommandUri("assignment/submit", baseUri);
     return Calls.call("post", commandUri, dtoIn);
   },
-
+},
   /*
   For calling command on specific server, in case of developing client site with already deployed
   server in uuCloud etc. You can specify url of this application (or part of url) in development

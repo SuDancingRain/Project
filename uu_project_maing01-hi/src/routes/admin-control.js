@@ -6,12 +6,16 @@ import "uu_plus4u5g01-bricks";
 import Calls from "../calls.js";
 import Config from "./config/config.js";
 
-import Get from "./subject/get.js";
+import CreateTerm from "./term/create.js";
+import TermForm from "../bricks/term-form.js";
+import Lsi from "../config/lsi.js";
 //@@viewOff:imports
 
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "AdminControl",
+    
+  netsingLevel: "bigBoxCollection"
     //@@viewOff:statics
 };
 
@@ -33,15 +37,13 @@ export const AdminControl = createVisualComponent({
 
         //@@viewOn:render
         const attrs = UU5.Common.VisualComponent.getAttrs(props);
-        return (
+        
+      const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
+        return currentNestingLevel ?(
             <div {...attrs}>
-                <UU5.Bricks.Row>
-                    <UU5.Bricks.Column>
-                        <UU5.Bricks.Button onClick={Calls.getSubject}>Get Subject</UU5.Bricks.Button>
-                    </UU5.Bricks.Column>
-                </UU5.Bricks.Row>
-            </div>
-        );
+            <UU5.Bricks.Button onClick={Calls.Term.list}>FUCK YOU</UU5.Bricks.Button>
+                     </div>
+        ): null;
         //@@viewOff:render
     },
 });
