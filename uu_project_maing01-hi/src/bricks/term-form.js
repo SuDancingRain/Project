@@ -31,34 +31,34 @@ export const TermForm = createVisualComponent({
 
     //@@viewOn:render
     let attrs = UU5.Common.VisualComponent.getAttrs(props);
-    
+
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
     return currentNestingLevel ? (
       <div {...attrs}>
-<UU5.Forms.Form>
-<UU5.Forms.Text
-name={"year"}
-label={<UU5.Bricks.Lsi lsi={Lsi.year} />}
-required
->
-</UU5.Forms.Text>
-<UU5.Forms.Select
-label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
-required
->
+        <UU5.Forms.Form>
+          <UU5.Forms.Text
+            name={"year"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.year} />}
+            required
+          >
+          </UU5.Forms.Text>
+          <UU5.Forms.Select
+            label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
+            required
+          >
 
-<UU5.Forms.Select.Option value={<UU5.Bricks.Lsi lsi={Lsi.summer} />}/>
-<UU5.Forms.Select.Option value={<UU5.Bricks.Lsi lsi={Lsi.winter} />}/>
+            <UU5.Forms.Select.Option value="Summer" />
+            <UU5.Forms.Select.Option value="Winter" />
 
-</UU5.Forms.Select>
-<UU5.Forms.Text
-name={"subject"}
-label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
->
-</UU5.Forms.Text>
+          </UU5.Forms.Select>
+          <UU5.Forms.Text
+            name={"subject"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
+          >
+          </UU5.Forms.Text>
 
 
-</UU5.Forms.Form>
+        </UU5.Forms.Form>
       </div>
     ) : null;
     //@@viewOff:render
