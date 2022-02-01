@@ -8,6 +8,9 @@ import Config from "./config/config.js";
 
 import CreateTerm from "./term/create.js";
 import TermForm from "../bricks/term-form.js";
+import SubjectForm from "../bricks/subject-form.js";
+import PersonForm from "../bricks/person-form.js";
+import AssignmentForm from "../bricks/assignment-form.js";
 import Lsi from "../config/lsi.js";
 //@@viewOff:imports
 
@@ -41,8 +44,13 @@ export const AdminControl = createVisualComponent({
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
     return currentNestingLevel ? (
       <div {...attrs}>
-        <UU5.Bricks.Button onClick={Calls.Term.list}>FUCK YOU</UU5.Bricks.Button>
+        <SubjectForm />
+        <UU5.Bricks.Line />
         <TermForm />
+        <UU5.Bricks.Line />
+        <PersonForm />
+        <UU5.Bricks.Line />
+        <AssignmentForm />
       </div>
     ) : null;
     //@@viewOff:render

@@ -43,6 +43,7 @@ export const TermForm = createVisualComponent({
           >
           </UU5.Forms.Text>
           <UU5.Forms.Select
+          name={"termSeason"}
             label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
             required
           >

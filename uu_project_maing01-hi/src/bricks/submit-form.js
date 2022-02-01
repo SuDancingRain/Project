@@ -8,6 +8,8 @@ import Calls from "../calls";
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "SubmitForm",
+  
+  netsingLevel: "bigBoxCollection"
   //@@viewOff:statics
 }
 
@@ -21,6 +23,7 @@ export const SubmitForm = createVisualComponent({
     //@@viewOff:defaultProps
   
     
+  render(props) {
       //@@viewOn:private
       //@@viewOff:private
   
@@ -28,8 +31,17 @@ export const SubmitForm = createVisualComponent({
       //@@viewOff:interface
   
       //@@viewOn:render
+      
+    let attrs = UU5.Common.VisualComponent.getAttrs(props);
+
+    const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
+    return currentNestingLevel ? (
+      <div {...attrs}>
+
+      </div>
+    ): null;
       //@@viewOff:render
-  
+  }
   });
   
   export default SubmitForm;
