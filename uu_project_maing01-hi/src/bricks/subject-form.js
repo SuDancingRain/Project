@@ -35,8 +35,8 @@ export const SubjectForm = createVisualComponent({
     //@@viewOn:render
 
     let attrs = UU5.Common.VisualComponent.getAttrs(props);
-
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
+  
     return currentNestingLevel ? (
       <div {...attrs}>
         <UU5.Forms.Form>

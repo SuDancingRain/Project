@@ -34,8 +34,11 @@ export const SubjectList = createVisualComponent({
         //@@viewOff:interface
 
         //@@viewOn:render
-        const attrs = UU5.Common.VisualComponent.getAttrs(props);
-        return (
+        const className =Config.Css.css``;
+        const attrs = UU5.Common.VisualComponent.getAttrs(props,className);
+        const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
+
+        return currentNestingLevel ? (
             <div {...attrs}>
                 <UU5.Bricks.Row>
           <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
@@ -53,7 +56,7 @@ export const SubjectList = createVisualComponent({
           </UU5.Bricks.Column>
           </UU5.Bricks.Row>
             </div>
-        );
+        ):null;
         //@@viewOff:render
     },
 });
