@@ -60,7 +60,7 @@ class AssignmentAbl {
     );
 
     dtoIn.awid = awid
-    let dtoOut;
+    let dtoOut = await this.dao.get(awid, dtoIn.id);
 
     //Checks for existence of assignment under which we are submitting
 
@@ -239,7 +239,8 @@ class AssignmentAbl {
 
     //attempt of creation of the new record with information given
 
-    let dtoOut;
+    let dtoOut = await this.dao.get(awid, dtoIn.id);
+
     try {
       dtoOut = await this.dao.create(dtoIn);
     } catch (e) {

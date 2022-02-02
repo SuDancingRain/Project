@@ -5,12 +5,12 @@ class TermMongo extends UuObjectDao {
 
   async createSchema(){
     await super.createIndex({ awid: 1, _id: 1 }, { unique: true });
-    await super.createIndex({ awid: 1, subjectList: 1 }); 
+    // await super.createIndex({ awid: 1, subjectList: 1 }); 
   }
   async create(uuObject) {
-    if (uuObject.subjectList) {
-      uuObject.subjectList = uuObject.subjectList.map((subjectId) => new ObjectId(subjectId));
-    }
+    // // if (uuObject.subjectList) {
+    // //   uuObject.subjectList = uuObject.subjectList.map((subjectId) => new ObjectId(subjectId));
+    // }
     return await super.insertOne(uuObject);
   }
   async get(awid, id) {

@@ -6,9 +6,19 @@ const { ValidationHelper } = require("uu_appg01_server").AppServer;
 const Errors = require("../api/errors/grade-error.js");
 
 const WARNINGS = {
-  assignmentUnsupportedKeys: {
-    code: `${Errors.Assignment.UC_CODE}unsupportedKeys`
+  
+  createUnsupportedKeys: {
+    code: `${Errors.Create.UC_CODE}unsupportedKeys`
   },
+  
+  editUnsupportedKeys: {
+    code: `${Errors.Edit.UC_CODE}unsupportedKeys`
+  },
+  
+  deleteUnsupportedKeys: {
+    code: `${Errors.Delete.UC_CODE}unsupportedKeys`
+  },
+  
   getUnsupportedKeys: {
     code: `${Errors.Get.UC_CODE}unsupportedKeys`
   },
@@ -29,48 +39,136 @@ class GradeAbl {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao("grade");
     this.assignmentDao = DaoFactory.getDao("assignment");
-    this.termDao = DaoFactory.getDao("term");
+    this.gradeDao = DaoFactory.getDao("grade");
     this.subjectDao = DaoFactory.getDao("subject");
     this.personDao = DaoFactory.getDao("person")
   }
 
-  async assignment(awid, dtoIn) {
-
+  async delete(awid, dtoIn) {
+    
     //Checks the input of DtoIn and for unsuported keys
 
-    let validationResult = this.validator.validate("gradeAssignmentDtoInType", dtoIn);
+    let validationResult = this.validator.validate("gradeDeleteDtoInType", dtoIn);
+
     let uuAppErrorMap = ValidationHelper.processValidationResult(
       dtoIn,
       validationResult,
-      WARNINGS.assignmentUnsupportedKeys.code,
-      Errors.Assignment.InvalidDtoIn
+      WARNINGS.deleteUnsupportedKeys.code,
+      Errors.Delete.InvalidDtoIn
     );
 
-    dtoIn.awid = awid
+    //Checks for existence of grade
 
-    //checks for assignment existence to which we attempt to add the grade record
+    let dtoOut = await this.dao.get(awid, dtoIn.id);
 
-    let dtoOut = await this.assignmentDao.get(awid, dtoIn.id);
     if (!dtoOut) {
-      throw new Errors.Assignment.AssignmentDoesNotExist(uuAppErrorMap, { assignmentId: dtoIn.id });
+      throw new Errors.Delete.GradeDoesNotExist({ uuAppErrorMap }, { gradeId: dtoIn.id });
     }
 
-    //attemps to add the grade record to the assignment Dao File
+    //attempts to delete Dao record
 
-    try {
-      dtoOut = await this.dao.assignment(dtoIn);
-    } catch (e) {
-      if (e instanceof ObjectStoreError) {
-        throw new Errors.Assignment.GradeDaoAssignmentFailed({ uuAppErrorMap }, e);
-      }
-      throw e;
-    }
+    await this.dao.delete(awid, dtoIn.id);
 
-    //returns the Dao record with errormap
+    //returns the errormap
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
 
     return dtoOut;
+
+  }
+
+  async edit(awid, dtoIn) {
+    
+    //Checks the input of DtoIn and for unsuported keys
+
+    let validationResult = this.validator.validate("gradeEditDtoInType", dtoIn);
+
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.editUnsupportedKeys.code,
+      Errors.Edit.InvalidDtoIn
+    );
+
+    //checks for grade existence
+
+    let dtoOut = await this.dao.get(awid, dtoIn.id);
+    if (!dtoOut) {
+      throw new Errors.Edit.GradeDoesNotExist({ uuAppErrorMap }, { gradeId: dtoIn.id });
+    }
+
+    dtoIn.awid = awid;
+
+    //checks for subject existence base on the subject list
+
+    if (dtoIn.subjectList) {
+      let presentSubjects = await this._checkSubjectExistence(awid, dtoIn.subjectList);
+      if (dtoIn.subjectList.length > 0) {
+        ValidationHelper.addWarning(
+          uuAppErrorMap,
+          WARNINGS.createSubjectDoesNotExist.code,
+          WARNINGS.createSubjectDoesNotExist.message,
+          { subjectList: [...new Set(dtoIn.subjectList)] }
+        );
+      }
+      dtoIn.subjectList = [...new Set(presentSubjects)];
+    } else {
+      dtoIn.subjectList = [];
+    }
+
+    //attemps to change dao record
+
+    try {
+      dtoOut = await this.dao.edit(dtoIn);
+    } catch (e) {
+
+      if (e instanceof ObjectStoreError) {
+
+        throw new Errors.Edit.GradeDaoEditFailed({ uuAppErrorMap }, e);
+      }
+      throw e;
+    }
+
+    //returns Dao record and errormap
+
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+
+    return dtoOut;
+
+  }
+
+  async create(awid, dtoIn) {
+    
+    //Checks the input of DtoIn and for unsuported keys
+
+    let validationResult = this.validator.validate("gradeCreateDtoInType", dtoIn);
+
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
+      WARNINGS.createUnsupportedKeys.code, Errors.Create.InvalidDtoIn);
+
+    dtoIn.awid = awid;
+
+
+    let dtoOut;
+
+    //attempts to create a DAO record
+
+    try {
+      dtoOut = await this.dao.create(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Create.GradeDaoCreateFailed({ uuAppErrorMap }, e);
+      }
+      throw e;
+    }
+
+    //returns DAO record and errormap
+
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+
+    return dtoOut;
+
+
   }
 
   async get(awid, dtoIn) {
@@ -120,14 +218,14 @@ class GradeAbl {
     if (!dtoIn.pageInfo.pageSize) dtoIn.pageInfo.pageSize = DEFAULTS.pageSize;
     if (!dtoIn.pageInfo.pageIndex) dtoIn.pageInfo.pageIndex = DEFAULTS.pageIndex;
 
-    //list filter base on Subject, assignment and term ID
+    //list filter base on Subject, assignment and grade ID
 
     let dtoOut;
     if (dtoIn.subjectList) {
       dtoOut = await this.dao.listBySubjectIdList(awid, dtoIn.subjectList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
     }
-    if (dtoIn.termList) {
-      dtoOut = await this.dao.listByTermIdList(awid, dtoIn.termList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
+    if (dtoIn.gradeList) {
+      dtoOut = await this.dao.listByGradeIdList(awid, dtoIn.gradeList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
     } if (dtoIn.assignmentList) {
       dtoOut = await this.dao.listByAssignemntIdList(awid, dtoIn.assignemntList, dtoIn.sortBy, dtoIn.order, dtoIn.pageInfo);
     } else {

@@ -59,12 +59,6 @@ class SubjectAbl {
 
     let dtoOut;
 
-    if (!dtoOut) {
-      let paramMap = {};
-      if (dtoIn.id) paramMap.subjectId = dtoIn.id;
-      if (dtoIn.name) paramMap.subjectName = dtoIn.name;
-      throw new Errors.Get.SubjectDoesNotExist(uuAppErrorMap, { paramMap });
-    }
 
     //attempts to acquire Dao record
 
@@ -72,6 +66,13 @@ class SubjectAbl {
       dtoOut = await this.dao.get(awid, dtoIn.id);
     } else {
       dtoOut = await this.dao.getByName(awid, dtoIn.name)
+    }
+
+    if (!dtoOut) {
+      let paramMap = {};
+      if (dtoIn.id) paramMap.subjectId = dtoIn.id;
+      if (dtoIn.name) paramMap.subjectName = dtoIn.name;
+      throw new Errors.Get.SubjectDoesNotExist(uuAppErrorMap, { paramMap });
     }
 
     //returns the Dao record and errormap
@@ -155,8 +156,14 @@ class SubjectAbl {
     );
 
     //checks for subject existence
+    
 
     let dtoOut;
+    if (dtoIn.id) {
+      dtoOut = await this.dao.get(awid, dtoIn.id);
+    } else {
+      dtoOut = await this.dao.getByName(awid, dtoIn.name)
+    }
     if (!dtoOut) {
       throw new Errors.Edit.SubjectDoesNotExist({ uuAppErrorMap }, { subjectId: dtoIn.id });
     }

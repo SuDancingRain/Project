@@ -54,7 +54,7 @@ export const SubjectList = createVisualComponent({
     }
 
     function handleUpdateSubject(updatedSubjectData) {
-      return selectedsubject.handlerMap.update(updatedSubjectData);
+      return selectedSubject.handlerMap.update(updatedSubjectData);
     }
 
     async function handleSubjectDelete() {
@@ -76,10 +76,22 @@ export const SubjectList = createVisualComponent({
           cell: (cellProps) => cellProps.data.data.name,
 
         },
-
+        
         {
-          header: "Description",
-          cell: (cellProps) => cellProps.data.data.description,
+          header: <UU5.Bricks.Lsi lsi={Lsi.credits}/>,
+          cell: (cellProps) => cellProps.data.data.credits,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.supervisor}/>,
+          cell: (cellProps) => cellProps.data.data.supervisor,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.degree}/>,
+          cell: (cellProps) => cellProps.data.data.degree,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.language}/>,
+          cell: (cellProps) => cellProps.data.data.language,
         },
 
         {
@@ -94,7 +106,7 @@ export const SubjectList = createVisualComponent({
                     onClick={() => { UU5.Environment.getRouter().setRoute("subjectDetail", { id: cellProps.data.data.id }) }}
                   >
                     <UU5.Bricks.Icon
-                      icon="mdi-pencil"
+                      icon="mdi-magnify"
                     />
                   </UU5.Bricks.Button>
                   <UU5.Bricks.Button
@@ -130,7 +142,7 @@ export const SubjectList = createVisualComponent({
             >
               <SubjectForm
                 selectedSubject={selectedSubject.data}
-                setSelectedSubject={selectedSubject}
+                setSelectedSubject={setSelectedSubject}
                 handleCreateSubject={handleCreateSubject}
                 handleUpdateSubject={handleUpdateSubject}
               />

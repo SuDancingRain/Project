@@ -6,25 +6,30 @@ const Lsi = {
 
   left: {
     home: {
-      cs: "Vítejte",
-      en: "Welcome",
+      cs: "Domovská stránka",
+      en: "Home page",
     },
     subjectList:{
       cs:"List předmětů",
       en:"List of subjects",
     },
-    personList:{
-      cs:"List uživatelů",
-      en:"List of users",
+    assignmentList:{
+      cs:"List úkolů",
+      en:"List of assignments",
     },
-    adminControl:{
-      cs:"Nástoje pro správce",
-      en:"Administration tools",
-    },
-    createTerm:{
-      cs:"Vytvor term",
-      en:"Craete Term",
-    },
+  termList:{
+    cs:"List semestrů",
+    en:"List of terms"
+  },
+  gradeList:{
+    cs:"List známek",
+    en:"List of grades"
+  },
+  
+  personList:{
+    cs:"List uživatelů",
+    en:"List of users"
+  },
     about: {
       cs: "O aplikaci",
       en: "About Application",

@@ -1,18 +1,16 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent } from "uu5g04-hooks";
+import { createComponent } from "uu5g04-hooks";
 import Config from "./config/config";
-import Calls from "../calls";
 //@@viewOff:imports
 
 const STATICS = {
   //@@viewOn:statics
-  displayName: Config.TAG + "SubmitForm",
-  netsingLevel: "bigBoxCollection",
+  displayName: Config.TAG + "Edit",
   //@@viewOff:statics
-}
+};
 
-export const SubmitForm = createVisualComponent({
+export const EditGrade = createComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -23,7 +21,6 @@ export const SubmitForm = createVisualComponent({
   defaultProps: {},
   //@@viewOff:defaultProps
 
-
   render(props) {
     //@@viewOn:private
     //@@viewOff:private
@@ -32,17 +29,21 @@ export const SubmitForm = createVisualComponent({
     //@@viewOff:interface
 
     //@@viewOn:render
+    const className = Config.Css.css``;
+    const attrs = UU5.Common.VisualComponent.getAttrs(props, className);
+    const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(
+      props,
+      STATICS
+    );
 
-    let attrs = UU5.Common.VisualComponent.getAttrs(props);
-
-    const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
     return currentNestingLevel ? (
       <div {...attrs}>
-
+        <div>Component {STATICS.displayName}</div>
+        {UU5.Utils.Content.getChildren(props.children, props, STATICS)}
       </div>
     ) : null;
     //@@viewOff:render
-  }
+  },
 });
 
-export default SubmitForm;
+export default EditGrade;

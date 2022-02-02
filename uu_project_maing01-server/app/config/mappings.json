@@ -141,8 +141,18 @@
         "httpMethod": "GET",
         "type": "CMD"
       },
-      "grade/assignment": {
-        "realization": "api/controllers/GradeController.assignment",
+      "grade/create": {
+        "realization": "api/controllers/GradeController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "grade/edit": {
+        "realization": "api/controllers/GradeController.edit",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "grade/delete": {
+        "realization": "api/controllers/GradeController.delete",
         "httpMethod": "POST",
         "type": "CMD"
       }

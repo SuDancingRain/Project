@@ -9,7 +9,15 @@ const gradeListDtoInType= shape({
 const gradeGetDtoInType = shape({
     id:id().isRequired()
 })
-const gradeAssignmentDtoInType = shape({
-    id:id().isRequired(),
-    grade:oneOf([1,2,3,4,5])
+const gradeCreateDtoInType =shape({
+grade:integer().isRequired(),
+uuIdentity:uuIdentity().isRequired()
+})
+const gradeEditDtoInType =shape({
+  id:id(),
+  grade:integer().isRequired(),
+uuIdentity:uuIdentity().isRequired()
+})
+const gradeDeleteDtoInType =shape({
+  id:id()
 })

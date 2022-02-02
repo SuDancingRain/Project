@@ -49,7 +49,7 @@ export const StudentCard = createVisualComponent({
 
                         <UU5.BlockLayout.Row weight="primary">
                             <UU5.Common.Identity>
-                                {({ identity }) => <UU5.Bricks.Text level="2" content={identity.name} />}
+                                {({ identity }) => <UU5.Bricks.Text  content={identity.name} />}
                             </UU5.Common.Identity>
                         </UU5.BlockLayout.Row>
                         <UU5.BlockLayout.Block>
@@ -61,7 +61,7 @@ export const StudentCard = createVisualComponent({
                                 </UU5.BlockLayout.Column>
                                 <UU5.BlockLayout.Column>
                                     <UU5.Common.Identity>
-                                        {({ identity }) => <UU5.Bricks.Text level="2" content={identity.email} />}
+                                        {({ identity }) => <UU5.Bricks.Link content={identity.email} />}
                                     </UU5.Common.Identity>
                                 </UU5.BlockLayout.Column>
                             </UU5.BlockLayout.Row>
@@ -76,7 +76,7 @@ export const StudentCard = createVisualComponent({
                             </UU5.BlockLayout.Column>
                             <UU5.BlockLayout.Column>
                                 <UU5.Common.Identity>
-                                    {({ identity }) => <UU5.Bricks.Text level="2" content={identity.uuIdentity} />}
+                                    {({ identity }) => <UU5.Bricks.Text content={identity.uuIdentity} />}
                                 </UU5.Common.Identity>
                             </UU5.BlockLayout.Column>
                         </UU5.BlockLayout.Row>

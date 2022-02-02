@@ -31,19 +31,19 @@
       },
       "subject/list": {
         "sysStateList": ["active"],
-        "profileList": ["Readers","Authorities","AwidLicenseOwner"]
+        "profileList": ["Readers","Executives","Authorities","AwidLicenseOwner"]
       },
       "term/create": {
         "sysStateList": ["active"],
-        "profileList": ["Authorities","Executives","AwidLicenseOwner"]
+        "profileList": ["Authorities","AwidLicenseOwner"]
       },
       "term/delete": {
         "sysStateList": ["active"],
-        "profileList": ["Authorities","Executives","AwidLicenseOwner"]
+        "profileList": ["Authorities","AwidLicenseOwner"]
       },
       "term/edit": {
         "sysStateList": ["active"],
-        "profileList": ["Authorities","Executives","AwidLicenseOwner"]
+        "profileList": ["Authorities","AwidLicenseOwner"]
       },
       "term/list": {
         "sysStateList": ["active"],
@@ -67,7 +67,7 @@
       },
       "subject/get": {
         "sysStateList": ["active"],
-        "profileList": ["Readers","Authorities","AwidLicenseOwner"]
+        "profileList": ["Readers","Authorities","Executives","AwidLicenseOwner"]
       },
       "term/get": {
         "sysStateList": ["active"],
@@ -117,7 +117,15 @@
         "sysStateList": ["active"],
         "profileList": ["Readers","Authorities","Executives","AwidLicenseOwner"]
       },
-      "grade/assignment": {
+      "grade/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities","Executives","AwidLicenseOwner"]
+      },
+      "grade/edit": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities","Executives","AwidLicenseOwner"]
+      },
+      "grade/delete": {
         "sysStateList": ["active"],
         "profileList": ["Authorities","Executives","AwidLicenseOwner"]
       }

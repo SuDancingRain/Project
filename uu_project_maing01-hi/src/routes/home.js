@@ -26,7 +26,7 @@ const CLASS_NAMES = {
     max-width: 624px;
     margin: 0 auto;
     text-align: center;
-  
+    
     ${UU5.Utils.ScreenSize.getMinMediaQueries("s", `text-align: left;`)}
   
     .uu5-bricks-header {
@@ -37,6 +37,22 @@ const CLASS_NAMES = {
       margin: 0 auto;
     }
   `,
+  welcomeRow: () => Config.Css.css`
+  padding: 56px 0 20px;
+  max-width: 624px;
+  margin: 0 auto;
+  text-align: center;
+
+  ${UU5.Utils.ScreenSize.getMinMediaQueries("s", `text-align: left;`)}
+  
+  .uu5-bricks-header {
+    margin-top: 8px;
+  }
+  
+  .plus4u5-bricks-user-photo {
+    margin: 0 auto;
+  }
+`,
 };
 
 export const Home = createVisualComponent({
@@ -69,21 +85,17 @@ export const Home = createVisualComponent({
           </UU5.Bricks.Column>
         </UU5.Bricks.Row>
 
-        <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12s s-8" style="text-align:center">
-            <UU5.Forms.Text label="search" placeholder="search for specific" />
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
+        <WelcomeRow textPadding="14px" icon="mdi-human-greeting">
+          <UU5.Bricks.Lsi lsi={Lsi.auth.intro} />
+        </WelcomeRow>
+        <WelcomeRow textPadding="10px" icon="mdi-monitor">
+          <UU5.Bricks.Lsi lsi={Lsi.auth.clientSide} />
+        </WelcomeRow>
+        <WelcomeRow textPadding="8px" icon="mdi-server">
+          <UU5.Bricks.Lsi lsi={Lsi.auth.serverSide} />
+        </WelcomeRow>
 
-          <UU5.Bricks.Row>
-            <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-              <UU5.Bricks.Card>
-                <UU5.Bricks.Header level="6">Subject name</UU5.Bricks.Header>
-                <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-                <UU5.Bricks.Button colorSchema="green">Subject page</UU5.Bricks.Button>
-              </UU5.Bricks.Card>
-            </UU5.Bricks.Column>
-          </UU5.Bricks.Row>
+        <UU5.Bricks.Image src="../assets/team7.png" />
       </div>
     );
     //@@viewOff:render

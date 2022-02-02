@@ -21,7 +21,7 @@ export const SubjectForm = createVisualComponent({
     shown: UU5.PropTypes.bool,
     selectedSubject: UU5.PropTypes.object,
     setFormOpened: UU5.PropTypes.func,
-    setSelectedsubject: UU5.PropTypes.func,
+    setSelectedSubject: UU5.PropTypes.func,
     handleCreateSubject: UU5.PropTypes.func,
     handleUpdateSubject: UU5.PropTypes.func,
   },
@@ -65,7 +65,7 @@ export const SubjectForm = createVisualComponent({
         else await props.handleCreateSubject(opt.values);
         opt.component.setReady();
         props.setSelectedSubject(null);
-      } catch {
+      } catch (e) {
         opt.component.getAlertBus().setAlert({
           content: <UU5.Bricks.Lsi lsi={Lsi.unsuccessful} />,
           colorSchema: "red",
@@ -80,7 +80,7 @@ export const SubjectForm = createVisualComponent({
 
     //@@viewOn:render
     const className = Config.Css.css``;
-    let attrs = UU5.Common.VisualComponent.getAttrs(props);
+    let attrs = UU5.Common.VisualComponent.getAttrs(props, className);
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
 
     return currentNestingLevel ? (
@@ -94,51 +94,55 @@ export const SubjectForm = createVisualComponent({
         >
           <UU5.Forms.Text
             name={"name"}
-            required={true}
+
             label={<UU5.Bricks.Lsi lsi={Lsi.name} />}
-            value={props.selectedSubject?.name || ""} 
+            value={props.selectedSubject?.name || ""}
           />
+
           <UU5.Forms.Text
+            valueColWidth={"xs-15 s-15 m-11 l-10 xl-10"}
             name={"description"}
             label={<UU5.Bricks.Lsi lsi={Lsi.description} />}
-            required
+
+
           />
-  
-          <UU5.Forms.Text
+          <UU5.Forms.Number
             name={"credits"}
             label={<UU5.Bricks.Lsi lsi={Lsi.credits} />}
-            required
+
           />
           <UU5.Forms.Text
             name={"supervisor"}
             label={<UU5.Bricks.Lsi lsi={Lsi.supervisor} />}
-            required
+
           />
-          
+
           <UU5.Forms.Select
             name={"degree"}
             label={<UU5.Bricks.Lsi lsi={Lsi.degree} />}
-            required
+
           >
             <UU5.Forms.Select.Option value="bachelors" />
             <UU5.Forms.Select.Option value="masters" />
           </UU5.Forms.Select>
-  
+
           <UU5.Forms.Select
             name={"language"}
             label={<UU5.Bricks.Lsi lsi={Lsi.language} />}
-            required
+
           >
             <UU5.Forms.Select.Option value="english" />
             <UU5.Forms.Select.Option value="czech" />
-          </UU5.Forms.Select> 
+          </UU5.Forms.Select>
 
           <UU5.Bricks.Line size={"s"} />
-          <UU5.Forms.Controls />
+          <UU5.Forms.Controls
+            buttonReset
+          />
         </UU5.Forms.Form>
 
 
-        
+
       </div >
     ) : null;
     //@@viewOff:render

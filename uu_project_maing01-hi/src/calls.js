@@ -127,8 +127,19 @@ Person:{
   },
 },
 Grade:{
-  assignment(dtoIn) {
-    let commandUri = Calls.getCommandUri("grade/assignment");
+  
+  create(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/create");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  delete(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/delete");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+
+  edit(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/edit");
     return Calls.call("post", commandUri, dtoIn);
   },
 

@@ -2,13 +2,13 @@
 const personAddDtoInType = shape({
     uuIdentity: uuIdentity().isRequired(),
     role: oneOf(["Administrator","Teacher","Student"]).isRequired(),
-    subject:oneOf([array(id()),id()]),
+    subject:array(id()),
 })
 const personEditDtoInType = shape({
     id:id().isRequired("uuIdentity"),
     uuIdentity:uuIdentity().isRequired("id"),
       role: oneOf(["Administrator","Teacher","Student"]),
-      subject:oneOf([array(id()),id()]),
+      subject:array(id()),
     })
 const personDeleteDtoInType = shape({
     id:id().isRequired("uuIdentity"),

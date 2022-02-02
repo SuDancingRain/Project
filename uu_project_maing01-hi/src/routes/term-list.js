@@ -1,18 +1,19 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import { createVisualComponent, useState, useDataList } from "uu5g04-hooks";
 import Uu5Tiles from "uu5tilesg02";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls";
-import Lsi from "./Term-lsi";
+import Lsi from "./term-lsi";
+import TermForm from "../bricks/term-form";
 //@@viewOff:imports
 
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "TermList",
-  netsingLevel: "bigBoxCollection",
+  nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
@@ -29,9 +30,36 @@ export const TermList = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+    const [selectedTerm, setSelectedTerm] = useState(null);
+    const [termToDelete, setTermToDelete] = useState(null);
+
+    const termListData = useDataList({
+      handlerMap: {
+        load: Calls.Term.list,
+        createItem: Calls.Term.create,
+      },
+      itemHandlerMap: {
+        update: Calls.Term.edit,
+        delete: Calls.Term.delete,
+      },
+      initialDtoIn: {},
+    });
     //@@viewOff:private
 
     //@@viewOn:interface
+    
+    function handleCreateTerm(newTermData) {
+      return termListData.handlerMap.createItem(newTermData);
+    }
+
+    function handleUpdateTerm(updatedTermData) {
+      return selectedTerm.handlerMap.update(updatedTermData);
+    }
+
+    async function handleTermDelete() {
+      await termToDelete.handlerMap.delete({ id: termToDelete.data.id });
+      setTermToDelete(null);
+    }
     //@@viewOff:interface
 
     //@@viewOn:render
@@ -39,68 +67,108 @@ export const TermList = createVisualComponent({
     const attrs = UU5.Common.VisualComponent.getAttrs(props,className);
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
 
-    // function getCollumns() {
-    //   return [
-    //     {
-    //       header: <UU5.Bricks.Lsi lsi={Lsi.name} />,
-    //       cell: (cellProps) => cellProps.data.name,
-    //     },
-    //     {
-    //       header: <UU5.Bricks.Lsi lsi={Lsi.date} />,
-    //       cell: (cellProps) => {
-    //         if (cellProps.data.date) {
-    //           return new Date(cellProps.data.date).toLocaleString(UU5.Common.Tools.getLanguage());
-    //         } else {
-    //           return "";
-    //         }
-    //       },
-    //     },
+    function getCollumns() {
+      return [
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.year} />,
+          sorterKey: "nameAsc",
+          cell: (cellProps) => cellProps.data.data.year,
 
-    //     {
-    //       header: "Author",
-    //       cell: (cellProps) => cellProps.data.author,
-    //     },
-    //     {
-    //       header: "Cover",
-    //       cell: (cellProps) => <UU5.Bricks.Image height="100px" src={cellProps.data.cover} />,
-    //     },
-    //     {
-    //       cell: (cellProps) => {
-    //         return (
-    //           <>
-    //           {/*<UU5.Bricks.Button colorSchema="blue" onClick={() => setFormOpened(true)}><UU5.Bricks.Icon icon="mdi-pencil" /></UU5.Bricks.Button>*/}
-    //           <UU5.Bricks.Button colorSchema="blue" onClick= {() => setSelectedBook(cellProps.data)}>
-    //             <UU5.Bricks.Icon icon="mdi-pencil" />
-    //           </UU5.Bricks.Button>
-    //           <UU5.Bricks.Button colorSchema="red" onClick= {() => setBookToDelete(cellProps.data)}>
-    //             <UU5.Bricks.Icon icon="mdi-close" />
-    //           </UU5.Bricks.Button>
-    //           </>
-    //         );
-    //       },
-    //     },
-    //   ];
-    // }
+        },
+        
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.termSeason}/>,
+          cell: (cellProps) => cellProps.data.data.termSeason,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.subject}/>,
+          cell: (cellProps) => cellProps.data.data.subject,
+        },
+        
+
+        {
+          cell: (cellProps) => {
+            if (cellProps.data.state.includes("pending")) {
+              return <UU5.Bricks.Loading />
+            } else {
+              return (
+                <>
+                  <UU5.Bricks.Button
+                    colorSchema="blue"
+                    onClick={() => { UU5.Environment.getRouter().setRoute("termDetail", { id: cellProps.data.data.id }) }}
+                  >
+                    <UU5.Bricks.Icon
+                      icon="mdi-magnify"
+                    />
+                  </UU5.Bricks.Button>
+                  <UU5.Bricks.Button
+                    colorSchema="blue"
+                    onClick={() => setSelectedTerm(cellProps.data)}
+                  >
+                    <UU5.Bricks.Icon icon="mdi-pencil" />
+                  </UU5.Bricks.Button>
+                  <UU5.Bricks.Button
+                    colorSchema="red"
+                    onClick={() => setTermToDelete(cellProps.data)}
+                  >
+                    <UU5.Bricks.Icon
+                      icon="mdi-close"
+                    />
+                  </UU5.Bricks.Button>
+                </>
+              );
+            }
+          },
+        },
+      ];
+    }
 
     return currentNestingLevel ? (
       <div {...attrs}>
-        <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12 s-9" style="text-align:center">
-            <UU5.Forms.Text label="search" placeholder="search for specific" />
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
-        <Uu5Tiles.List columns={[]} data={[]} rowAlignment="center" rowHeight={150} />
-        <UU5.Bricks.Row>
-          <UU5.Bricks.Column colWidth="x-12 s-2" style="text-align:center">
-            <UU5.Bricks.Card>
-              <UU5.Bricks.Header level="6">Term name</UU5.Bricks.Header>
-              <UU5.Bricks.Text>Describtion</UU5.Bricks.Text>
-              <UU5.Bricks.Button colorSchema="green">Term page</UU5.Bricks.Button>
-            </UU5.Bricks.Card>
-          </UU5.Bricks.Column>
-        </UU5.Bricks.Row>
+        {
+          selectedTerm && (
+            <UU5.Bricks.Modal
+              header={<UU5.Bricks.Lsi lsi={props.selectedTerm?.id ? Lsi.updateTerm : Lsi.createTerm} />}
+              shown={!!selectedTerm}
+              onClose={() => setSelectedTerm(null)}
+            >
+              <TermForm
+                selectedTerm={selectedTerm.data}
+                setSelectedTerm={setSelectedTerm}
+                handleCreateTerm={handleCreateTerm}
+                handleUpdateTerm={handleUpdateTerm}
+              />
+            </UU5.Bricks.Modal>
+          )
+        }
+
+        {termToDelete && (
+          <UU5.Bricks.Modal
+            header={"Confirm Term Deletion"}
+            shown={true}
+            onClose={() => setTermToDelete(null)}
+          >
+            <div className={"center uu5-common-padding-s"}>
+              <UU5.Bricks.Button onClick={() => setTermToDelete(null)}>
+                Refuse
+              </UU5.Bricks.Button>
+              {""}
+              <UU5.Bricks.Button colorSchema={"red"} onClick={handleTermDelete}>
+                Confirm
+              </UU5.Bricks.Button>
+            </div>
+          </UU5.Bricks.Modal>
+        )
+        }
+        <UU5.Bricks.Button colorSchema={"green"} onClick={()=> setSelectedTerm({data: {} })}>
+          <UU5.Bricks.Icon icon={"mdi-plus"} />
+          <UU5.Bricks.Lsi lsi={Lsi.create} />
+        </UU5.Bricks.Button>
+
+        <Uu5Tiles.List columns={getCollumns()} data={termListData.data || []} rowAlignment="center" rowHeight={150} />
+        
       </div>
-    ):null;
+    ) : null;
     //@@viewOff:render
   },
 });

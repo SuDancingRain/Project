@@ -206,21 +206,21 @@ class TermAbl {
 
     //check for subject existencec if a subjectList is provided
 
-    if (dtoIn.subjectList) {
-      let presentSubjects = await this._checkSubjectExistence(awid, dtoIn.subjectList);
+    // if (dtoIn.subjectList) {
+    // //   let presentSubjects = await this._checkSubjectExistence(awid, dtoIn.subjectList);
 
-      if (dtoIn.subjectList.length > 0) {
-        ValidationHelper.addWarning(
-          uuAppErrorMap,
-          WARNINGS.createSubjectDoesNotExist.code,
-          WARNINGS.createSubjectDoesNotExist.message,
-          { subjectList: [...new Set(dtoIn.subjectList)] }
-        );
-      }
-      dtoIn.subjectList = [...new Set(presentSubjects)];
-    } else {
-      dtoIn.subjectList = [];
-    }
+    //   if (dtoIn.subjectList.length > 0) {
+    //     ValidationHelper.addWarning(
+    //       uuAppErrorMap,
+    //       WARNINGS.createSubjectDoesNotExist.code,
+    //       WARNINGS.createSubjectDoesNotExist.message,
+    //       { subjectList: [...new Set(dtoIn.subjectList)] }
+    //     );
+    //   }
+    //   dtoIn.subjectList = [...new Set(presentSubjects)];
+    // } else {
+    //   dtoIn.subjectList = [];
+    // }
 
     let dtoOut;
 

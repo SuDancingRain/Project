@@ -3,27 +3,27 @@ import UU5 from "uu5g04";
 import { createVisualComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
-import Lsi from "../routes/term-lsi"
+import Lsi from "../routes/grade-lsi"
 //@@viewOff:imports
 
 const STATICS = {
   //@@viewOn:statics
-  displayName: Config.TAG + "TermForm",
+  displayName: Config.TAG + "GradeForm",
   nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
-export const TermForm = createVisualComponent({
+export const GradeForm = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
   propTypes: {
     shown: UU5.PropTypes.bool,
-    selectedTerm: UU5.PropTypes.object,
+    selectedGrade: UU5.PropTypes.object,
     setFormOpened: UU5.PropTypes.func,
-    setSelectedTerm: UU5.PropTypes.func,
-    handleCreateTerm: UU5.PropTypes.func,
-    handleUpdateTerm: UU5.PropTypes.func,
+    setSelectedGrade: UU5.PropTypes.func,
+    handleCreateGrade: UU5.PropTypes.func,
+    handleUpdateGrade: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -34,22 +34,21 @@ export const TermForm = createVisualComponent({
   render(props) {
     //@@viewOn:private
 
-    const termListData = useDataList({
+    const gradeListData = useDataList({
       handlerMap: {
-        load: Calls.Term.list,
+        load: Calls.Grade.list,
       },
       initialDtoIn: {},
     });
 
 
-    const termAvailableTags = [];
-    if (termListData.data) {
-      termListData.data.forEach((term) => {
-        termAvailableTags.push({
-          value: term.data.id,
-          value: term.data.year,
-          content: term.data.termSeason,
-          content: term.data.subject,
+    const gradeAvailableTags = [];
+    if (gradeListData.data) {
+      gradeListData.data.forEach((grade) => {
+        gradeAvailableTags.push({
+          value: grade.data.id,
+          value: grade.data.grade,
+          content: grade.data.uuIdentity,
         });
       });
     }
@@ -58,10 +57,10 @@ export const TermForm = createVisualComponent({
     async function handleOnSave(opt) {
       opt.component.setPending();
       try {
-        if (props.selectedTerm?.id) await props.handleUpdateTerm({ id: props.selectedTerm.id, ...opt.values });
-        else await props.handleCreateTerm(opt.values);
+        if (props.selectedGrade?.id) await props.handleUpdateGrade({ id: props.selectedGrade.id, ...opt.values });
+        else await props.handleCreateGrade(opt.values);
         opt.component.setReady();
-        props.setSelectedTerm(null);
+        props.setSelectedGrade(null);
       } catch (e) {
         opt.component.getAlertBus().setAlert({
           content: <UU5.Bricks.Lsi lsi={Lsi.unsuccessful} />,
@@ -89,34 +88,19 @@ export const TermForm = createVisualComponent({
           labelColWidth={"xs-12 s-12 m-4 l-3 xl-3"}
           valueColWidth={"xs-12 s-12 m-8 l-7 xl-7"}
           onSave={handleOnSave}
-          onCancel={() => props.setSelectedTerm(null)}
+          onCancel={() => props.setSelectedGrade(null)}
         >
 
           <UU5.Forms.Number
-            name={"year"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.year} />}
+            name={"grade"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.grade} />}
+          />
+          
+          <UU5.Forms.Text
+            name={"uuIdentity"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.uuIdentity} />}
           />
 
-          <UU5.Forms.Select
-            name={"termSeason"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
-          >
-
-            <UU5.Forms.Select.Option value={"winter"} />
-            <UU5.Forms.Select.Option value={"summer"} />
-
-          </UU5.Forms.Select>
-
-          <UU5.Forms.Select
-            name={"subject"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
-            multiple
-          >
-
-            <UU5.Forms.Select.Option value={"winter"} />
-            <UU5.Forms.Select.Option value={"summer"} />
-
-          </UU5.Forms.Select>
 
           <UU5.Bricks.Line size={"s"} />
           <UU5.Forms.Controls
@@ -132,4 +116,4 @@ export const TermForm = createVisualComponent({
   }
 });
 
-export default TermForm;
+export default GradeForm;

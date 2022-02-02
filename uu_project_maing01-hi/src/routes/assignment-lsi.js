@@ -1,4 +1,11 @@
 export default{
+
+    date: { cs: "Datum", en: "Date" },
+    create: { cs: "Přidat úkol", en: "Add Assignment" },
+    createAssignment: { cs: "Přidat úkol", en: "Add Assignment" },
+    updateAssignment: { cs: "Upravit úkol", en: "Update Assignment" },
+    unsuccessful: { cs: "Nepodařilo se upravit úkol", en: "Failed to updated subject" },
+
     activity:{"cs":"Aktivita","en":"Activity"},
     description:{"cs":"Popisek","en":"Description"},
     dateOfTerm:{"cs":"Datum Aktivity","en":"Date of Activity"},

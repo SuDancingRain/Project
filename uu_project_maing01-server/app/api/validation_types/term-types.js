@@ -2,14 +2,14 @@
 const termCreateDtoInType = shape({
     year:integer(2030).isRequired(),
     termSeason:oneOf(["winter","summer"]).isRequired(),
-    subject: array(id(),10)
+    subjectList: array(id(),20)
 })
 
 const termEditDtoInType = shape({
     id:id().isRequired(),
     year:integer(2030),
     termSeason:oneOf(["winter","summer"]),
-    subject: array(id(),10)
+    subjectList: array(id(),20)
 })
 
 const termGetDtoInType = shape({

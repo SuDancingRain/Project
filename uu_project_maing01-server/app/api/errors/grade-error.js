@@ -32,33 +32,76 @@ const Get = {
   },
 };
 
-const Assignment = {
-  UC_CODE: `${GRADE_ERROR_PREFIX}assignment/`,
+const Create = {
+  UC_CODE: `${GRADE_ERROR_PREFIX}create/`,
+  
   InvalidDtoIn: class extends ProjectMainUseCaseError {
     constructor() {
       super(...arguments);
-      this.code = `${Assignment.UC_CODE}invalidDtoIn`;
+      this.code = `${Create.UC_CODE}invalidDtoIn`;
       this.message = "DtoIn is not valid.";
     }
   },
-  AssignmentDoesNotExist: class extends ProjectMainUseCaseError {
+  GradeDaoCreateFailed: class extends ProjectMainUseCaseError {
     constructor() {
       super(...arguments);
-      this.code = `${Assignment.UC_CODE}assignmentDoesNotExist`;
-      this.message = "Assignment does not exist.";
+      this.code = `${Create.UC_CODE}gradeDaoCreateFailed`;
+      this.message = "Create grade by grade Dao create failed.";
+    }
+  }
+};
+
+const Edit = {
+  UC_CODE: `${GRADE_ERROR_PREFIX}edit/`,
+  
+  InvalidDtoIn: class extends ProjectMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Edit.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
     }
   },
-  GradeDaoAssignmentFailed: class extends ProjectMainUseCaseError {
+ 
+  GradeDoesNotExist: class extends ProjectMainUseCaseError {
     constructor() {
       super(...arguments);
-      this.code = `${Assignment.UC_CODE}gradeDaoSubmitFailed`;
-      this.message = "Assignemnt grade by grade Dao assignment failed.";
+      this.code = `${Edit.UC_CODE}gradeDoesNotExist`;
+      this.message = "Grade does not exist.";
+    }
+  },
+  GradeDaoEditFailed: class extends ProjectMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Edit.UC_CODE}gradeDaoEditFailed`;
+      this.message = "Edit grade by grade Dao edit failed.";
+    }
+    }
+  
+};
+
+const Delete = {
+  UC_CODE: `${GRADE_ERROR_PREFIX}delete/`,
+  
+  InvalidDtoIn: class extends ProjectMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Delete.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+  GradeDoesNotExist: class extends ProjectMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Delete.UC_CODE}gradeDoesNotExist`;
+      this.message = "Grade does not exist.";
     }
   }
 };
 
 module.exports = {
-  Assignment,
+  Delete,
+  Edit,
+  Create,
   Get,
   List
 };

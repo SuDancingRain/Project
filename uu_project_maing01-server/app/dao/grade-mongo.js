@@ -10,6 +10,24 @@ await super.createIndex({ awid: 1, termList: 1 });
 await super.createIndex({ awid: 1, subjectList: 1 });
 
   }
+  async create(uuObject) {
+    // // if (uuObject.subjectList) {
+    // //   uuObject.subjectList = uuObject.subjectList.map((subjectId) => new ObjectId(subjectId));
+    // }
+    return await super.insertOne(uuObject);
+  }
+  
+  async edit(uuObject) {
+    if (uuObject.subjectList) {
+      uuObject.subjectList = uuObject.subjectList.map((subjectId) => new ObjectId(subjectId));
+    }
+    let filter = { id: uuObject.id, awid: uuObject.awid };
+    return await super.findOneAndUpdate(filter, uuObject, "NONE");
+  }
+  async delete(awid, id) {
+    await super.deleteOne({ awid, id });
+  }
+ 
   async get(awid, id) {
     return await super.findOne({ id, awid });
   }
