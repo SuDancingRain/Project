@@ -48,6 +48,11 @@ export const SubjectForm = createVisualComponent({
         subjectAvailableTags.push({
           value: subject.data.id,
           content: subject.data.name,
+          content: subject.data.description,
+          value: subject.data.credits,
+          content: subject.data.supervisor,
+          content: subject.data.degree,
+          content: subject.data.language,
         });
       });
     }
