@@ -9,7 +9,7 @@ import Lsi from "../routes/subject-lsi"
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "SubjectForm",
-  netsingLevel: "bigBoxCollection",
+  nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 }
 

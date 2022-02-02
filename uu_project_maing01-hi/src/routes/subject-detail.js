@@ -11,7 +11,7 @@ import config from "../config/config.js";
 const STATICS = {
     //@@viewOn:statics
     displayName: Config.TAG + "SubjectDetail",
-    netsingLevel: "bigBoxCollection",
+    nestingLevel: "bigBoxCollection",
     //@@viewOff:statics
 };
 

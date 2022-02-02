@@ -13,7 +13,7 @@ import SubjectForm from "../bricks/subject-form"
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "SubjectList",
-  netsingLevel: "bigBoxCollection",
+  nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
