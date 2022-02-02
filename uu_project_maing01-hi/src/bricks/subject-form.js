@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent } from "uu5g04-hooks";
+import { createVisualComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
 import Lsi from "../routes/subject-lsi"
@@ -17,7 +17,14 @@ export const SubjectForm = createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
-  propTypes: {},
+  propTypes: {
+    shown: UU5.PropTypes.bool,
+    selectedSubject: UU5.PropTypes.object,
+    setFormOpened: UU5.PropTypes.func,
+    setSelectedsubject: UU5.PropTypes.func,
+    handleCreateSubject: UU5.PropTypes.func,
+    handleUpdateSubject: UU5.PropTypes.func,
+  },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
@@ -27,43 +34,82 @@ export const SubjectForm = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+    const subjectListData = useDataList({
+      handlerMap: {
+        load: Calls.Subject.list,
+      },
+      initialDtoIn: {},
+    });
+
+
+    const subjectAvailableTags = [];
+    if (subjectListData.data) {
+      subjectListData.data.forEach((subject) => {
+        subjectAvailableTags.push({
+          value: subject.data.id,
+          content: subject.data.name,
+        });
+      });
+    }
+
+
+    async function handleOnSave(opt) {
+      opt.component.setPending();
+      try {
+        if (props.selectedSubject?.id) await props.handleUpdateSubject({ id: props.selectedSubject.id, ...opt.values });
+        else await props.handleCreateSubject(opt.values);
+        opt.component.setReady();
+        props.setSelectedSubject(null);
+      } catch {
+        opt.component.getAlertBus().setAlert({
+          content: <UU5.Bricks.Lsi lsi={Lsi.unsuccessful} />,
+          colorSchema: "red",
+        });
+        opt.component.setReady();
+      }
+    }
     //@@viewOff:private
 
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
-
+    const className = Config.Css.css``;
     let attrs = UU5.Common.VisualComponent.getAttrs(props);
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
-  
+
     return currentNestingLevel ? (
       <div {...attrs}>
-        <UU5.Forms.Form>
+
+        <UU5.Forms.Form
+          labelColWidth={"xs-12 s-12 m-4 l-3 xl-3"}
+          valueColWidth={"xs-12 s-12 m-8 l-7 xl-7"}
+          onSave={handleOnSave}
+          onCancel={() => props.setSelectedSubject(null)}
+        >
           <UU5.Forms.Text
             name={"name"}
+            required={true}
             label={<UU5.Bricks.Lsi lsi={Lsi.name} />}
-            required
-          >
-          </UU5.Forms.Text>
+            value={props.selectedSubject?.name || ""} 
+          />
           <UU5.Forms.Text
             name={"description"}
             label={<UU5.Bricks.Lsi lsi={Lsi.description} />}
             required
-          >
-          </UU5.Forms.Text>
+          />
+  
           <UU5.Forms.Text
             name={"credits"}
             label={<UU5.Bricks.Lsi lsi={Lsi.credits} />}
             required
-          >
-          </UU5.Forms.Text>
+          />
           <UU5.Forms.Text
             name={"supervisor"}
             label={<UU5.Bricks.Lsi lsi={Lsi.supervisor} />}
             required
-          >
-          </UU5.Forms.Text>
+          />
+          
           <UU5.Forms.Select
             name={"degree"}
             label={<UU5.Bricks.Lsi lsi={Lsi.degree} />}
@@ -72,7 +118,7 @@ export const SubjectForm = createVisualComponent({
             <UU5.Forms.Select.Option value="bachelors" />
             <UU5.Forms.Select.Option value="masters" />
           </UU5.Forms.Select>
-
+  
           <UU5.Forms.Select
             name={"language"}
             label={<UU5.Bricks.Lsi lsi={Lsi.language} />}
@@ -80,9 +126,15 @@ export const SubjectForm = createVisualComponent({
           >
             <UU5.Forms.Select.Option value="english" />
             <UU5.Forms.Select.Option value="czech" />
-          </UU5.Forms.Select>
+          </UU5.Forms.Select> 
+
+          <UU5.Bricks.Line size={"s"} />
+          <UU5.Forms.Controls />
         </UU5.Forms.Form>
-      </div>
+
+
+        
+      </div >
     ) : null;
     //@@viewOff:render
   }

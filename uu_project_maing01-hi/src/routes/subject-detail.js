@@ -1,9 +1,11 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import { createVisualComponent,useDataObject } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
+import Calls from "../calls.js";
+import config from "../config/config.js";
 //@@viewOff:imports
 
 const STATICS = {
@@ -17,7 +19,10 @@ export const SubjectDetail = createVisualComponent({
     ...STATICS,
 
   //@@viewOn:propTypes
-  propTypes: {},
+  propTypes: {
+      
+    subjectId: UU5.PropTypes.string,
+  },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
@@ -26,20 +31,52 @@ export const SubjectDetail = createVisualComponent({
 
     render(props) {
         //@@viewOn:private
+        const subjectData = useDataObject({
+            handlerMap: {
+              load: Calls.Subject.get,
+            },
+            initialDtoIn: {
+              id: props.subjectId || props.params.id,
+            },
+          });      
         //@@viewOff:private
 
         //@@viewOn:interface
         //@@viewOff:interface
 
         //@@viewOn:render
+        const className=Config.Css.css``;
         const attrs = UU5.Common.VisualComponent.getAttrs(props);
-        return (
-            <div {...attrs}>
-                <UU5.Bricks.Row>
-                    Subject Detail
-                </UU5.Bricks.Row>
-            </div>
-        );
+        const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props,STATICS);
+
+        function getResult(){
+            let result;
+            
+      if (subjectData.state.includes("pending")) {
+        result = <UU5.Bricks.Loading />;
+      } else if (subjectData.state.includes("error")) {
+        result = <UU5.Common.Error errorData={subjectData.errorData} />;
+      } else {
+        if (currentNestingLevel) {
+          result = (
+            <UU5.Bricks.Block colorScheme="blue" card={"content"}>
+              <b>{subjectData.data.name}</b>
+            </UU5.Bricks.Block>
+          );
+        } else {
+          result = (
+            <UU5.Bricks.Link
+              onClick={() => UU5.Environment.getRouter().setRoute("subjectDetail", { id: props.subjectId })}
+            >
+              {subjectData.data.name}
+            </UU5.Bricks.Link>
+          );
+        }
+      }
+      return result;
+    }
+
+    return getResult();
         //@@viewOff:render
     },
 });

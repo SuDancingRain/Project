@@ -38,138 +38,138 @@ let Calls = {
     return await Calls.getWorkspace();
   },
 Subject:{
-  create(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("subject/create", baseUri);
+  create(dtoIn) {
+    let commandUri = Calls.getCommandUri("subject/create");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  delete(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("subject/delete", baseUri);
+  delete(dtoIn) {
+    let commandUri = Calls.getCommandUri("subject/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  edit(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("subject/edit", baseUri);
+  edit(dtoIn) {
+    let commandUri = Calls.getCommandUri("subject/edit");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  get(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("subject/get", baseUri);
+  get(dtoIn) {
+    let commandUri = Calls.getCommandUri("subject/get");
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  list(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("subject/list", baseUri);
+  list(dtoIn) {
+    let commandUri = Calls.getCommandUri("subject/list");
     return Calls.call("get", commandUri, dtoIn);
   },
 },
 Term:{
-  create(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("term/create", baseUri);
+  create(dtoIn) {
+    let commandUri = Calls.getCommandUri("term/create");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  delete(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("term/delete", baseUri);
+  delete(dtoIn) {
+    let commandUri = Calls.getCommandUri("term/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  edit(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("term/edit", baseUri);
+  edit(dtoIn) {
+    let commandUri = Calls.getCommandUri("term/edit");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  get(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("term/get", baseUri);
+  get(dtoIn) {
+    let commandUri = Calls.getCommandUri("term/get");
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  list(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("term/list", baseUri);
+  list(dtoIn) {
+    let commandUri = Calls.getCommandUri("term/list");
     return Calls.call("get", commandUri, dtoIn);
   },
 },
 Person:{
-  add(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/add", baseUri);
+  add(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/add");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  delete(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/delete", baseUri);
+  delete(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  edit(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/edit", baseUri);
+  edit(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/edit");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  get(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/get", baseUri);
+  get(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/get");
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  list(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/list", baseUri);
+  list(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/list");
     return Calls.call("get", commandUri, dtoIn);
   },
 
 
-  addToSubject(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/addToSubject", baseUri);
+  addToSubject(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/addToSubject");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  removeFromSubject(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("person/removeFromSubject", baseUri);
+  removeFromSubject(dtoIn) {
+    let commandUri = Calls.getCommandUri("person/removeFromSubject");
     return Calls.call("post", commandUri, dtoIn);
   },
 },
 Grade:{
-  assignment(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("grade/assignment", baseUri);
+  assignment(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/assignment");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  get(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("grade/get", baseUri)
+  get(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/get")
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  list(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("grade/list", baseUri);
+  list(dtoIn) {
+    let commandUri = Calls.getCommandUri("grade/list");
     return Calls.call("get", commandUri, dtoIn);
   },
 },
 Assignment:{
-  create(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/create", baseUri);
+  create(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/create");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  delete(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/delete", baseUri);
+  delete(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  edit(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/edit", baseUri);
+  edit(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/edit");
     return Calls.call("post", commandUri, dtoIn);
   },
 
-  get(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/get", baseUri);
+  get(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/get");
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  list(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/list", baseUri);
+  list(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/list");
     return Calls.call("get", commandUri, dtoIn);
   },
 
-  submit(dtoIn, baseUri) {
-    let commandUri = Calls.getCommandUri("assignment/submit", baseUri);
+  submit(dtoIn) {
+    let commandUri = Calls.getCommandUri("assignment/submit");
     return Calls.call("post", commandUri, dtoIn);
   },
 },
