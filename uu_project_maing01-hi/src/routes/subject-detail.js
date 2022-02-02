@@ -46,7 +46,7 @@ export const SubjectDetail = createVisualComponent({
 
         //@@viewOn:render
         const className=Config.Css.css``;
-        const attrs = UU5.Common.VisualComponent.getAttrs(props);
+        const attrs = UU5.Common.VisualComponent.getAttrs(props, className);
         const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props,STATICS);
 
         function getResult(){
