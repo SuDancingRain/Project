@@ -124,22 +124,22 @@ class TermAbl {
 
     dtoIn.awid = awid;
 
-    //checks for subject existence base on the subject list
+    // //checks for subject existence base on the subject list
 
-    if (dtoIn.subjectList) {
-      let presentSubjects = await this._checkSubjectExistence(awid, dtoIn.subjectList);
-      if (dtoIn.subjectList.length > 0) {
-        ValidationHelper.addWarning(
-          uuAppErrorMap,
-          WARNINGS.createSubjectDoesNotExist.code,
-          WARNINGS.createSubjectDoesNotExist.message,
-          { subjectList: [...new Set(dtoIn.subjectList)] }
-        );
-      }
-      dtoIn.subjectList = [...new Set(presentSubjects)];
-    } else {
-      dtoIn.subjectList = [];
-    }
+    // if (dtoIn.subjectList) {
+    //   let presentSubjects = await this._checkSubjectExistence(awid, dtoIn.subjectList);
+    //   if (dtoIn.subjectList.length > 0) {
+    //     ValidationHelper.addWarning(
+    //       uuAppErrorMap,
+    //       WARNINGS.createSubjectDoesNotExist.code,
+    //       WARNINGS.createSubjectDoesNotExist.message,
+    //       { subjectList: [...new Set(dtoIn.subjectList)] }
+    //     );
+    //   }
+    //   dtoIn.subjectList = [...new Set(presentSubjects)];
+    // } else {
+    //   dtoIn.subjectList = [];
+    // }
 
     //attemps to change dao record
 

@@ -1,11 +1,12 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent, useDataObject } from "uu5g04-hooks";
+import { createVisualComponent, useDataObject, useState, useDataList } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls.js";
-import config from "../config/config.js";
+import GradeForm from "../bricks/grade-form"
+import Lsi from "./assignment-lsi"
 //@@viewOff:imports
 
 const STATICS = {
@@ -39,9 +40,36 @@ export const AssignmentDetail = createVisualComponent({
         id: props.assignmentId || props.params.id,
       },
     });
+    
+    const [selectedGrade, setSelectedGrade] = useState(null);
+    const [gradeToDelete, setGradeToDelete] = useState(null);
+
+    const gradeListData = useDataList({
+      handlerMap: {
+        load: Calls.Grade.list,
+        createItem: Calls.Grade.create,
+      },
+      itemHandlerMap: {
+        update: Calls.Grade.edit,
+        delete: Calls.Grade.delete,
+      },
+      initialDtoIn: {},
+    });
     //@@viewOff:private
 
     //@@viewOn:interface
+    function handleCreateGrade(newGradeData) {
+      return gradeListData.handlerMap.createItem(newGradeData);
+    }
+
+    function handleUpdateGrade(updatedGradeData) {
+      return selectedGrade.handlerMap.update(updatedGradeData);
+    }
+
+    async function handleGradeDelete() {
+      await gradeToDelete.handlerMap.delete({ id: gradeToDelete.data.id });
+      setGradeToDelete(null);
+    }
     //@@viewOff:interface
 
     //@@viewOn:render
@@ -60,16 +88,27 @@ export const AssignmentDetail = createVisualComponent({
         if (currentNestingLevel) {
           result = (
             <UU5.Bricks.Block colorScheme="blue" card={"content"}>
-              {assignmentData.data.activity}
-              <br />{assignmentData.data.description}
-              <br />{assignmentData.data.dateOfTerm}
-              <br />{assignmentData.data.deadline}
-              <br />{assignmentData.data.requirements}
-              <br />{assignmentData.data.capacity}
-              <br />{assignmentData.data.supervisor}
-              <br />{assignmentData.data.subject}
-              <br />{assignmentData.data.term}
+            
+            <b> <UU5.Bricks.Lsi lsi={Lsi.name}/> </b> :   {assignmentData.data.name}
               <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.description}/> </b> : {assignmentData.data.description}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.dateOfTerm}/> </b> : {assignmentData.data.dateOfTerm}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.deadline}/> </b> : {assignmentData.data.deadline}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.requirements}/> </b> : {assignmentData.data.requirements}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.capacity}/> </b> : {assignmentData.data.capacity}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.supervisor}/> </b> : {assignmentData.data.supervisor}
+            <UU5.Bricks.Line />
+            <UU5.Bricks.Header level="4" content="Grade Form" />
+            <GradeForm 
+            setSelectedGrade={setSelectedGrade}
+            handleCreateGrade={handleCreateGrade}
+            handleUpdateGrade={handleUpdateGrade}
+            />
             </UU5.Bricks.Block>
 
           );

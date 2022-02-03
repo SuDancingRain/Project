@@ -5,7 +5,7 @@ import { createVisualComponent, useDataObject } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls.js";
-import config from "../config/config.js";
+import Lsi from "./grade-lsi"
 //@@viewOff:imports
 
 const STATICS = {
@@ -59,9 +59,16 @@ export const GradeDetail = createVisualComponent({
       } else {
         if (currentNestingLevel) {
           result = (
-            <UU5.Bricks.Block colorScheme="blue" card={"content"}>
-              {gradeData.data.grade}
-              <br />{gradeData.data.uuIdentity}
+            <UU5.Bricks.Block colorScheme="blue"  size= "l"card={"content"}>
+             <b> <UU5.Bricks.Lsi lsi={Lsi.grade}/> </b> : {gradeData.data.grade}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.description}/> </b> : {gradeData.data.description}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.name}/> </b> : {gradeData.data.name}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.subject}/> </b> : {gradeData.data.subject}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.term}/> </b> : {gradeData.data.term}
             </UU5.Bricks.Block>
 
           );

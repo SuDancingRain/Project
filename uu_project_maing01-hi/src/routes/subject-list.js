@@ -8,6 +8,8 @@ import Config from "./config/config.js";
 import Calls from "../calls";
 import Lsi from "./subject-lsi";
 import SubjectForm from "../bricks/subject-form"
+import AssignmentDataList from "../bricks/assignment-data-list.js";
+import AssignmentDetail from "./assignment-detail"
 //@@viewOff:imports
 
 const STATICS = {
@@ -17,7 +19,8 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-export const SubjectList = createVisualComponent({
+export const SubjectList = AssignmentDataList(
+createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -45,6 +48,19 @@ export const SubjectList = createVisualComponent({
       },
       initialDtoIn: {},
     });
+
+
+    const assignmentAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((assignment) => {
+        assignmentAvailableTags.push({
+          value: assignment.data.id,
+          content: assignment.data.name,
+        });
+      });
+    }
+
+
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -94,6 +110,21 @@ export const SubjectList = createVisualComponent({
           cell: (cellProps) => cellProps.data.data.language,
         },
 
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.assignmentList}/>,
+          cell: (cellProps) => {
+            let assignmentComponentList= []
+            cellProps.data.data.assignmentList.forEach((assignment) => {
+              assignmentComponentList.push(
+                <div key={assignment}>
+                  <AssignmentDetail assignmentId={assignment} nestingLevel={"inline"}/>
+                  <br/>
+                </div>
+              );
+              });
+              return <>{assignmentComponentList}</>
+            }
+        },
         {
           cell: (cellProps) => {
             if (cellProps.data.state.includes("pending")) {
@@ -179,6 +210,7 @@ export const SubjectList = createVisualComponent({
     ) : null;
     //@@viewOff:render
   },
-});
+})
+);
 
 export default SubjectList;

@@ -4,6 +4,7 @@ import { createVisualComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
 import Lsi from "../routes/term-lsi"
+import SubjectDataList from "./subject-data-list";
 //@@viewOff:imports
 
 const STATICS = {
@@ -13,7 +14,8 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-export const TermForm = createVisualComponent({
+export const TermForm = SubjectDataList(
+ createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -33,6 +35,7 @@ export const TermForm = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+    
 
     const termListData = useDataList({
       handlerMap: {
@@ -49,7 +52,17 @@ export const TermForm = createVisualComponent({
           value: term.data.id,
           value: term.data.year,
           content: term.data.termSeason,
-          content: term.data.subject,
+          content: term.data.subjectList,
+        });
+      });
+    }
+    
+    const subjectAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((subject) => {
+        subjectAvailableTags.push({
+          value: subject.data.id,
+          content: subject.data.name,
         });
       });
     }
@@ -95,11 +108,15 @@ export const TermForm = createVisualComponent({
           <UU5.Forms.Number
             name={"year"}
             label={<UU5.Bricks.Lsi lsi={Lsi.year} />}
+            
+            value={props.selectedTerm?.year || ""}
           />
 
           <UU5.Forms.Select
             name={"termSeason"}
             label={<UU5.Bricks.Lsi lsi={Lsi.termSeason} />}
+            
+            value={props.selectedTerm?.termSeason || ""}
           >
 
             <UU5.Forms.Select.Option value={"winter"} />
@@ -107,16 +124,14 @@ export const TermForm = createVisualComponent({
 
           </UU5.Forms.Select>
 
-          <UU5.Forms.Select
-            name={"subject"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
-            multiple
-          >
-
-            <UU5.Forms.Select.Option value={"winter"} />
-            <UU5.Forms.Select.Option value={"summer"} />
-
-          </UU5.Forms.Select>
+          <UU5.Forms.TagSelect
+              name={"subjectList"}
+              label={<UU5.Bricks.Lsi lsi={Lsi.subjectList} />}
+              value={props.selectedTerm?.subjectList || []}
+              availableTags={subjectAvailableTags}
+              multiple
+              controlled
+            />
 
           <UU5.Bricks.Line size={"s"} />
           <UU5.Forms.Controls
@@ -130,6 +145,7 @@ export const TermForm = createVisualComponent({
     ) : null;
     //@@viewOff:render
   }
-});
+})
+);
 
 export default TermForm;

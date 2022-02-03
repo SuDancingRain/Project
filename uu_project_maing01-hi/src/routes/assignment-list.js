@@ -8,6 +8,8 @@ import Config from "./config/config.js";
 import Calls from "../calls";
 import Lsi from "./assignment-lsi";
 import AssignmentForm from "../bricks/assignment-form";
+import GradeDataList from "../bricks/grade-data-list"
+import GradeDetail from "./grade-detail"
 //@@viewOff:imports
 
 const STATICS = {
@@ -17,7 +19,8 @@ const STATICS = {
     //@@viewOff:statics
 };
 
-export const AssignmentList = createVisualComponent({
+export const AssignmentList =GradeDataList(
+ createVisualComponent({
     ...STATICS,
 
     //@@viewOn:propTypes
@@ -46,6 +49,18 @@ defaultProps: {},
       },
       initialDtoIn: {},
     });
+
+    
+    const gradeAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((grade) => {
+        gradeAvailableTags.push({
+          value: grade.data.id,
+          content: grade.data.name,
+        });
+      });
+    }
+
         //@@viewOff:private
 
         //@@viewOn:interface
@@ -72,12 +87,20 @@ defaultProps: {},
         function getCollumns() {
           return [
             {
-              header: <UU5.Bricks.Lsi lsi={Lsi.activity} />,
+              header: <UU5.Bricks.Lsi lsi={Lsi.name} />,
               sorterKey: "nameAsc",
-              cell: (cellProps) => cellProps.data.data.activity,
+              cell: (cellProps) => cellProps.data.data.name,
     
             },
-            
+
+            {
+              header: <UU5.Bricks.Lsi lsi={Lsi.id}/>,
+              cell: (cellProps) => cellProps.data.data.id,
+            },
+            {
+              header:"",
+              cell: "",
+            },
             {
               header: <UU5.Bricks.Lsi lsi={Lsi.dateOfTerm}/>,
               cell: (cellProps) => cellProps.data.data.dateOfTerm,
@@ -90,7 +113,26 @@ defaultProps: {},
               header: <UU5.Bricks.Lsi lsi={Lsi.requirements}/>,
               cell: (cellProps) => cellProps.data.data.requirements,
             },
+            {
+              header: <UU5.Bricks.Lsi lsi={Lsi.supervisor}/>,
+              cell: (cellProps) => cellProps.data.data.supervisor,
+            },
             
+            {
+              header: <UU5.Bricks.Lsi lsi={Lsi.gradeList}/>,
+              cell: (cellProps) => {
+                let gradeComponentList= []
+                cellProps.data.data.gradeList.forEach((grade) => {
+                  gradeComponentList.push(
+                    <div key={grade}>
+                      <GradeDetail gradeId={grade} nestingLevel={"inline"}/>
+                      <br/>
+                    </div>
+                  );
+                  });
+                  return <>{gradeComponentList}</>
+                }
+            },
     
             {
               cell: (cellProps) => {
@@ -177,6 +219,7 @@ defaultProps: {},
         ) : null;
             //@@viewOff:render
     },
-});
+})
+);
 
 export default AssignmentList;

@@ -44,10 +44,47 @@ export const GradeList = createVisualComponent({
       },
       initialDtoIn: {},
     });
+
+    const gradeAvailableTags = [];
+    if (gradeListData.data) {
+      gradeListData.data.forEach((grade) => {
+        gradeAvailableTags.push({
+          value: grade.data.name,
+          content: grade.data.name,
+        });
+      });
+    }
+    const gradeAvailableTags2 = [];
+    if (gradeListData.data) {
+      gradeListData.data.forEach((grade) => {
+        gradeAvailableTags2.push({
+
+          value: grade.data.subject,
+          content: grade.data.subject,
+        });
+      });
+    }
+    const gradeAvailableTags3 = [];
+    if (gradeListData.data) {
+      gradeListData.data.forEach((grade) => {
+        gradeAvailableTags3.push({
+
+          value: grade.data.term,
+          content: grade.data.term,
+        });
+      });
+    }
+
+    const nameFilter = [
+      "3106-1769-1",
+      "2032-8932-1",
+      "201-3150-1",
+      "9635-983-1"
+    ];
     //@@viewOff:private
 
     //@@viewOn:interface
-    
+
     function handleCreateGrade(newGradeData) {
       return gradeListData.handlerMap.createItem(newGradeData);
     }
@@ -64,7 +101,7 @@ export const GradeList = createVisualComponent({
 
     //@@viewOn:render
     const className = Config.Css.css``;
-    const attrs = UU5.Common.VisualComponent.getAttrs(props,className);
+    const attrs = UU5.Common.VisualComponent.getAttrs(props, className);
     const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
 
     function getCollumns() {
@@ -75,13 +112,19 @@ export const GradeList = createVisualComponent({
           cell: (cellProps) => cellProps.data.data.grade,
 
         },
-        
-        {
-          header: <UU5.Bricks.Lsi lsi={Lsi.uuIdentity}/>,
-          cell: (cellProps) => cellProps.data.data.uuIdentity,
-        },
-        
 
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.name} />,
+          cell: (cellProps) => cellProps.data.data.name,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.subject} />,
+          cell: (cellProps) => cellProps.data.data.subject,
+        },
+        {
+          header: <UU5.Bricks.Lsi lsi={Lsi.term} />,
+          cell: (cellProps) => cellProps.data.data.term,
+        },
         {
           cell: (cellProps) => {
             if (cellProps.data.state.includes("pending")) {
@@ -118,53 +161,133 @@ export const GradeList = createVisualComponent({
         },
       ];
     }
-
-    return currentNestingLevel ? (
-      <div {...attrs}>
-        {
-          selectedGrade && (
-            <UU5.Bricks.Modal
-              header={<UU5.Bricks.Lsi lsi={props.selectedGrade?.id ? Lsi.updateGrade : Lsi.createGrade} />}
-              shown={!!selectedGrade}
-              onClose={() => setSelectedGrade(null)}
-            >
-              <GradeForm
-                selectedGrade={selectedGrade.data}
-                setSelectedGrade={setSelectedGrade}
-                handleCreateGrade={handleCreateGrade}
-                handleUpdateGrade={handleUpdateGrade}
-              />
-            </UU5.Bricks.Modal>
-          )
-        }
-
-        {gradeToDelete && (
-          <UU5.Bricks.Modal
-            header={"Confirm Grade Deletion"}
-            shown={true}
-            onClose={() => setGradeToDelete(null)}
-          >
-            <div className={"center uu5-common-padding-s"}>
-              <UU5.Bricks.Button onClick={() => setGradeToDelete(null)}>
-                Refuse
-              </UU5.Bricks.Button>
-              {""}
-              <UU5.Bricks.Button colorSchema={"red"} onClick={handleGradeDelete}>
-                Confirm
-              </UU5.Bricks.Button>
-            </div>
-          </UU5.Bricks.Modal>
-        )
-        }
-        <UU5.Bricks.Button colorSchema={"green"} onClick={()=> setSelectedGrade({data: {} })}>
-          <UU5.Bricks.Icon icon={"mdi-plus"} />
-          <UU5.Bricks.Lsi lsi={Lsi.create} />
-        </UU5.Bricks.Button>
-
-        <Uu5Tiles.List columns={getCollumns()} data={gradeListData.data || []} rowAlignment="center" rowHeight={150} />
+    const Filter = [
+      {
+        key: "name",
+        label: { cs: "uuIdentity", en: "uuIdentity" },
+        filterFn: (item, value) => {
+          console.log(item, value[0])
+          return item.data.name.includes(value[0]);
+        },
+        component: (
+          <UU5.Forms.TagSelect
+            name={"uuIdentity"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.name} />}
+            availableTags={gradeAvailableTags}
+            multiple={false}
+            required={true}
+          />
+        ),
+        getValueLabel: (value) => {
+          let gradeObject = gradeAvailableTags.find((gradeOption) => gradeOption.value === value[0]);
+          return gradeObject.content;
+        },
+      },
+      {
+        key: "name2",
+        label: { cs: "Predmet", en: "Subject" },
+        filterFn: (item, value) => {
+          return item.data.subject.includes(value[0]);
+        },
+        component: (
+          <UU5.Forms.TagSelect
+            name={"Subject"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
+            availableTags={gradeAvailableTags2}
+            multiple={false}
+            required={true}
+          />
+        ),
+        getValueLabel: (value) => {
+          let gradeObject = gradeAvailableTags2.find((gradeOption) => gradeOption.value === value[0]);
+          return gradeObject.content;
+        },
+      },
+      {
+        key: "name3",
+        label: { cs: "Semestr", en: "Semester" },
+        filterFn: (item, value) => {
+          console.log(item, value[0])
+          return item.data.term.includes(value[0]);
+        },
+        component: (
+          <UU5.Forms.TagSelect
+            name={"Semester"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.term} />}
+            availableTags={gradeAvailableTags3}
+            multiple={false}
+            required={true}
+          />
+        ),
+        getValueLabel: (value) => {
+          let gradeObject = gradeAvailableTags3.find((gradeOption) => gradeOption.value === value[0]);
+          return gradeObject.content;
+        },
+      },
         
-      </div>
-    ) : null;
+    ]
+
+
+return currentNestingLevel ? (
+  <div {...attrs}>
+    {
+      selectedGrade && (
+        <UU5.Bricks.Modal
+          header={<UU5.Bricks.Lsi lsi={props.selectedGrade?.id ? Lsi.updateGrade : Lsi.createGrade} />}
+          shown={!!selectedGrade}
+          onClose={() => setSelectedGrade(null)}
+        >
+          <GradeForm
+            selectedGrade={selectedGrade.data}
+            setSelectedGrade={setSelectedGrade}
+            handleCreateGrade={handleCreateGrade}
+            handleUpdateGrade={handleUpdateGrade}
+          />
+        </UU5.Bricks.Modal>
+      )
+    }
+
+    {gradeToDelete && (
+      <UU5.Bricks.Modal
+        header={"Confirm Grade Deletion"}
+        shown={true}
+        onClose={() => setGradeToDelete(null)}
+      >
+        <div className={"center uu5-common-padding-s"}>
+          <UU5.Bricks.Button onClick={() => setGradeToDelete(null)}>
+            Refuse
+          </UU5.Bricks.Button>
+          {""}
+          <UU5.Bricks.Button colorSchema={"red"} onClick={handleGradeDelete}>
+            Confirm
+          </UU5.Bricks.Button>
+        </div>
+      </UU5.Bricks.Modal>
+    )
+    }
+
+    <UU5.Bricks.Container>
+      <Uu5Tiles.ControllerProvider data={gradeListData.data || []} filters={Filter}>
+        <Uu5Tiles.ActionBar
+          searchable={true}
+          actions={[
+            {
+              onClick: () => setSelectedGrade({ data: {} }),
+              icon: "mdi-plus",
+              content: Lsi.create,
+              colorSchema: "green",
+              active: true,
+              bgStyle: "filled",
+            },
+          ]}
+        />
+        <Uu5Tiles.FilterBar />
+        <Uu5Tiles.InfoBar sortable={false} />
+        <Uu5Tiles.List columns={getCollumns()} rowAlignment="center" rowHeight={150} />
+      </Uu5Tiles.ControllerProvider>
+    </UU5.Bricks.Container>
+  </div>
+) : null;
     //@@viewOff:render
   },
 });

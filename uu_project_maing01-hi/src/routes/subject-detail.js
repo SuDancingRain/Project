@@ -1,11 +1,12 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent, useDataObject } from "uu5g04-hooks";
+import { createVisualComponent, useDataObject, useState, useDataList } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls.js";
-import config from "../config/config.js";
+import AssignmentForm from "../bricks/assignment-form"
+import Lsi from "./subject-lsi"
 //@@viewOff:imports
 
 const STATICS = {
@@ -39,9 +40,39 @@ export const SubjectDetail = createVisualComponent({
         id: props.subjectId || props.params.id,
       },
     });
+
+    
+    const [selectedAssignment, setSelectedAssignment] = useState(null);
+    const [assignmentToDelete, setAssignmentToDelete] = useState(null);
+
+    const assignmentListData = useDataList({
+      handlerMap: {
+        load: Calls.Assignment.list,
+        createItem: Calls.Assignment.create,
+      },
+      itemHandlerMap: {
+        update: Calls.Assignment.edit,
+        delete: Calls.Assignment.delete,
+      },
+      initialDtoIn: {},
+    });
+
     //@@viewOff:private
 
     //@@viewOn:interface
+    
+    function handleCreateAssignment(newAssignmentData) {
+      return assignmentListData.handlerMap.createItem(newAssignmentData);
+    }
+
+    function handleUpdateAssignment(updatedAssignmentData) {
+      return selectedAssignment.handlerMap.update(updatedAssignmentData);
+    }
+
+    async function handleAssignmentDelete() {
+      await assignmentToDelete.handlerMap.delete({ id: assignmentToDelete.data.id });
+      setAssignmentToDelete(null);
+    }
     //@@viewOff:interface
 
     //@@viewOn:render
@@ -60,13 +91,25 @@ export const SubjectDetail = createVisualComponent({
         if (currentNestingLevel) {
           result = (
             <UU5.Bricks.Block colorScheme="blue" card={"content"}>
-              {subjectData.data.name}
-              <br />{subjectData.data.description}
-              <br />{subjectData.data.credits}
-              <br />{subjectData.data.supervisor}
-              <br />{subjectData.data.degree}
-              <br />{subjectData.data.language}
+              
+             <b> <UU5.Bricks.Lsi lsi={Lsi.name}/> </b> : {subjectData.data.name}
               <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.description}/> </b> : {subjectData.data.description}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.credits}/> </b> : {subjectData.data.credits}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.supervisor}/> </b> : {subjectData.data.supervisor}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.degree}/> </b> : {subjectData.data.degree}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.language}/> </b> : {subjectData.data.language}
+            <UU5.Bricks.Line />
+            <UU5.Bricks.Header level="4" content="Subject Form" />
+            <AssignmentForm
+            setSelectedAssignment={setSelectedAssignment}
+            handleCreateAssignment={handleCreateAssignment}
+            handleUpdateAssignment={handleUpdateAssignment}
+            />
             </UU5.Bricks.Block>
 
           );

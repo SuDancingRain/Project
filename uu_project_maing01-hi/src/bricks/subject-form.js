@@ -4,6 +4,7 @@ import { createVisualComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
 import Lsi from "../routes/subject-lsi"
+import AssignmentDataList from "../bricks/assignment-data-list"
 //@@viewOff:imports
 
 const STATICS = {
@@ -13,7 +14,8 @@ const STATICS = {
   //@@viewOff:statics
 }
 
-export const SubjectForm = createVisualComponent({
+export const SubjectForm = AssignmentDataList(
+createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -53,6 +55,17 @@ export const SubjectForm = createVisualComponent({
           content: subject.data.supervisor,
           content: subject.data.degree,
           content: subject.data.language,
+          content: subject.data.assignment,
+        });
+      });
+    }
+    
+    const assignmentAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((assignment) => {
+        assignmentAvailableTags.push({
+          value: assignment.data.id,
+          content: assignment.data.activity,
         });
       });
     }
@@ -104,23 +117,27 @@ export const SubjectForm = createVisualComponent({
             name={"description"}
             label={<UU5.Bricks.Lsi lsi={Lsi.description} />}
 
+            value={props.selectedSubject?.description || ""}
 
           />
           <UU5.Forms.Number
             name={"credits"}
             label={<UU5.Bricks.Lsi lsi={Lsi.credits} />}
 
+            value={props.selectedSubject?.credits || ""}
           />
           <UU5.Forms.Text
             name={"supervisor"}
             label={<UU5.Bricks.Lsi lsi={Lsi.supervisor} />}
 
+            value={props.selectedSubject?.supervisor || ""}
           />
 
           <UU5.Forms.Select
             name={"degree"}
             label={<UU5.Bricks.Lsi lsi={Lsi.degree} />}
 
+            value={props.selectedSubject?.degree || ""}
           >
             <UU5.Forms.Select.Option value="bachelors" />
             <UU5.Forms.Select.Option value="masters" />
@@ -130,11 +147,20 @@ export const SubjectForm = createVisualComponent({
             name={"language"}
             label={<UU5.Bricks.Lsi lsi={Lsi.language} />}
 
+            value={props.selectedSubject?.language || ""}
           >
             <UU5.Forms.Select.Option value="english" />
             <UU5.Forms.Select.Option value="czech" />
           </UU5.Forms.Select>
 
+
+          <UU5.Forms.TagSelect
+              name={"assignmentList"}
+              label={<UU5.Bricks.Lsi lsi={Lsi.assignmentList} />}
+              value={props.selectedSubject?.assignmentList || []}
+              availableTags={assignmentAvailableTags}
+              multiple
+            />
           <UU5.Bricks.Line size={"s"} />
           <UU5.Forms.Controls
             buttonReset
@@ -147,6 +173,7 @@ export const SubjectForm = createVisualComponent({
     ) : null;
     //@@viewOff:render
   }
-});
+})
+);
 
 export default SubjectForm;

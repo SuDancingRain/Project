@@ -8,6 +8,8 @@ import Config from "./config/config.js";
 import Calls from "../calls";
 import Lsi from "./term-lsi";
 import TermForm from "../bricks/term-form";
+import SubjectDataList from "../bricks/subject-data-list.js";
+import SubjectDetail from "./subject-detail"
 //@@viewOff:imports
 
 const STATICS = {
@@ -17,7 +19,8 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-export const TermList = createVisualComponent({
+export const TermList = SubjectDataList(
+createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -44,6 +47,18 @@ export const TermList = createVisualComponent({
       },
       initialDtoIn: {},
     });
+
+    
+    const subjectAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((subject) => {
+        subjectAvailableTags.push({
+          value: subject.data.id,
+          content: subject.data.name,
+        });
+      });
+    }
+
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -81,8 +96,19 @@ export const TermList = createVisualComponent({
           cell: (cellProps) => cellProps.data.data.termSeason,
         },
         {
-          header: <UU5.Bricks.Lsi lsi={Lsi.subject}/>,
-          cell: (cellProps) => cellProps.data.data.subject,
+          header: <UU5.Bricks.Lsi lsi={Lsi.subjectList}/>,
+          cell: (cellProps) => {
+            let subjectComponentList= []
+            cellProps.data.data.subjectList.forEach((subject) => {
+              subjectComponentList.push(
+                <div key={subject}>
+                  <SubjectDetail subjectId={subject} nestingLevel={"inline"}/>
+                  <br/>
+                </div>
+              );
+              });
+              return <>{subjectComponentList}</>
+            }
         },
         
 
@@ -171,6 +197,6 @@ export const TermList = createVisualComponent({
     ) : null;
     //@@viewOff:render
   },
-});
-
+})
+);
 export default TermList;

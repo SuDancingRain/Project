@@ -68,13 +68,6 @@ class SubjectAbl {
       dtoOut = await this.dao.getByName(awid, dtoIn.name)
     }
 
-    if (!dtoOut) {
-      let paramMap = {};
-      if (dtoIn.id) paramMap.subjectId = dtoIn.id;
-      if (dtoIn.name) paramMap.subjectName = dtoIn.name;
-      throw new Errors.Get.SubjectDoesNotExist(uuAppErrorMap, { paramMap });
-    }
-
     //returns the Dao record and errormap
 
     dtoOut.uuAppErrorMap = uuAppErrorMap;
@@ -199,14 +192,6 @@ class SubjectAbl {
     let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult,
       WARNINGS.createUnsupportedKeys.code, Errors.Create.InvalidDtoIn);
 
-    //check for subject existence
-
-    let name = dtoIn.name;
-    let subjectDb = await this.dao.getByName(awid, name);
-
-    if (subjectDb) {
-      throw new Errors.Create.SubjectAlreadyExists({ uuAppErrorMap }, { code: name });
-    }
 
     dtoIn.awid = awid;
 

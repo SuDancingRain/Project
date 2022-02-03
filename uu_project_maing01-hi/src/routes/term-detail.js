@@ -1,11 +1,12 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import "uu5g04-bricks";
-import { createVisualComponent, useDataObject } from "uu5g04-hooks";
+import { createVisualComponent, useDataObject , useDataList, useState} from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import Config from "./config/config.js";
 import Calls from "../calls.js";
-import config from "../config/config.js";
+import SubjectForm from "../bricks/subject-form"
+import Lsi from "./term-lsi"
 //@@viewOff:imports
 
 const STATICS = {
@@ -31,6 +32,23 @@ export const TermDetail = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+    const [selectedSubject, setSelectedSubject] = useState(null);
+    const [subjectToDelete, setSubjectToDelete] = useState(null);
+
+    const subjectListData = useDataList({
+      handlerMap: {
+        load: Calls.Subject.list,
+        createItem: Calls.Subject.create,
+      },
+      itemHandlerMap: {
+        update: Calls.Subject.edit,
+        delete: Calls.Subject.delete,
+      },
+      initialDtoIn: {},
+    });
+
+
+
     const termData = useDataObject({
       handlerMap: {
         load: Calls.Term.get,
@@ -42,6 +60,19 @@ export const TermDetail = createVisualComponent({
     //@@viewOff:private
 
     //@@viewOn:interface
+    
+    function handleCreateSubject(newSubjectData) {
+      return subjectListData.handlerMap.createItem(newSubjectData);
+    }
+
+    function handleUpdateSubject(updatedSubjectData) {
+      return selectedSubject.handlerMap.update(updatedSubjectData);
+    }
+
+    async function handleSubjectDelete() {
+      await subjectToDelete.handlerMap.delete({ id: subjectToDelete.data.id });
+      setSubjectToDelete(null);
+    }
     //@@viewOff:interface
 
     //@@viewOn:render
@@ -60,11 +91,18 @@ export const TermDetail = createVisualComponent({
         if (currentNestingLevel) {
           result = (
             <UU5.Bricks.Block colorScheme="blue" card={"content"}>
-              {termData.data.year}
-              <br />{termData.data.termSeason}
-              <br />{termData.data.subject}
+              
+             <b> <UU5.Bricks.Lsi lsi={Lsi.year}/> </b> : {termData.data.year}
+              <br />
+             <b> <UU5.Bricks.Lsi lsi={Lsi.termSeason}/> </b> : {termData.data.termSeason}
+            <UU5.Bricks.Line />
+            <UU5.Bricks.Header level="4" content="Subject Form" />
+            <SubjectForm 
+            setSelectedSubject={setSelectedSubject}
+            handleCreateSubject={handleCreateSubject}
+            handleUpdateSubject={handleUpdateSubject}
+            />
             </UU5.Bricks.Block>
-
           );
         } else {
           result = (

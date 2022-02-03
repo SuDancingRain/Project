@@ -65,22 +65,8 @@ const Lsi = {
     },
 
     intro: {
-      cs: `<uu5string/>Tato šablona obsahuje připravenou klientskou a serverovou část. Jednotlivé komponety, které jsou zde zobrazeny,
-          jsou určeny k tomu, aby demonstrovaly možnosti a způsob použití. Je vhodné je upravit, zkopírovat či smazat pro
-          potřeby vyvíjené aplikace. Více o struktuře uuApp se dozvíte v dokumetaci viz&nbsp;
-          <UU5.Bricks.Link
-            href="https://uuapp.plus4u.net/uu-bookkit-maing01/e884539c8511447a977c7ff070e7f2cf/book"
-            target="_blank"
-            content="uuAppDevKit"
-          />.`,
-      en: `<uu5string/>This template consist of prepared client and server side. Shown components demonstrate possibilities and way of
-          using. For application developing purposes they are suitable for modifying, copying and deleting. More about
-          uuApp Structure see documentation&nbsp;
-          <UU5.Bricks.Link
-            href="https://uuapp.plus4u.net/uu-bookkit-maing01/e884539c8511447a977c7ff070e7f2cf/book/page?code=stepByStepApp"
-            target="_blank"
-            content="uuAppDevKit"
-          />.`,
+      cs: `Aplikace uuSubjectTermMan je designována pro využití ve školách. Aplikace pomáha, škole s organizací semestrů, předmětů, úkolů a známek. UuSubjectTermMan se snaží zjednodušit a organizovat školní prostředí pro studenty a učitele.`,
+      en: `Application uuSubjectTermMan is an aplication designed for schools.Application helps schools with organization of Terms and its Subjects with Assignments and Grades. The uuSubjectTermMan tries to simplify and organize school workspace for students and teachers.`,
     },
 
     clientSide: {

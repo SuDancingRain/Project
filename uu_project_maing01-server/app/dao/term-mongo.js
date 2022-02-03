@@ -23,9 +23,7 @@ class TermMongo extends UuObjectDao {
     });
   }
     async edit(uuObject) {
-      if (uuObject.subjectList) {
-        uuObject.subjectList = uuObject.subjectList.map((subjectId) => new ObjectId(subjectId));
-      }
+    
       let filter = { id: uuObject.id, awid: uuObject.awid };
       return await super.findOneAndUpdate(filter, uuObject, "NONE");
     }

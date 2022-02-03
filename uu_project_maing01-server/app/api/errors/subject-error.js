@@ -13,13 +13,7 @@ const Create = {
       this.message = "DtoIn is not valid.";
     }
   },
-  SubjectAlreadyExists: class extends ProjectMainUseCaseError{
-    constructor() {
-      super(...arguments);
-      this.code = `${Create.UC_CODE}subjectAlreadyExists`;
-      this.message = "Subject already exists.";
-    }
-  },
+  
   SubjectDaoCreateFailed: class extends ProjectMainUseCaseError {
     constructor() {
       super(...arguments);

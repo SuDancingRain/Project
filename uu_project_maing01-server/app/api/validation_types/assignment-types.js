@@ -1,10 +1,10 @@
 /* eslint-disable */
 const assignmentCreateDtoInType = shape({
     
-    activity: uu5String(255).isRequired(),
+    name: uu5String(255).isRequired(),
     description: uu5String(4000).isRequired(),
-    dateOfTerm: uu5String(255).isRequired(),
-    deadline: uu5String(255).isRequired(),
+    dateOfTerm: uu5String(255),
+    deadline: uu5String(255),
     requirements:uu5String(255).isRequired(),
     capacity:integer(50).isRequired(),
     supervisor:uu5String(255).isRequired(),
@@ -14,15 +14,14 @@ const assignmentCreateDtoInType = shape({
 
 const assignmentEditDtoInType = shape({
     id:id().isRequired(),
-    activity: uu5String(255),
+    name: uu5String(255),
     description: uu5String(4000),
     dateOfTerm: uu5String(255),
     deadline: uu5String(255),
     requirements:uu5String(255),
     capacity:integer(50),
     supervisor:uu5String(255),
-    subject:id(),
-    term:id(),
+    gradeList:array(id(),200),
     
 })
 const assignmentGetDtoInType = shape({

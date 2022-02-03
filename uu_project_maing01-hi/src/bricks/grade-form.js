@@ -48,7 +48,10 @@ export const GradeForm = createVisualComponent({
         gradeAvailableTags.push({
           value: grade.data.id,
           value: grade.data.grade,
-          content: grade.data.uuIdentity,
+          content: grade.data.description,
+          content: grade.data.subject,
+          content: grade.data.name,
+          content: grade.data.term
         });
       });
     }
@@ -94,13 +97,37 @@ export const GradeForm = createVisualComponent({
           <UU5.Forms.Number
             name={"grade"}
             label={<UU5.Bricks.Lsi lsi={Lsi.grade} />}
-          />
-          
-          <UU5.Forms.Text
-            name={"uuIdentity"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.uuIdentity} />}
+
+            value={props.selectedGrade?.grade || ""}
           />
 
+          <UU5.Forms.Text
+            name={"description"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.description} />}
+
+            value={props.selectedGrade?.description || ""}
+          />
+
+          <UU5.Forms.Text
+            name={"name"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.name} />}
+
+            value={props.selectedGrade?.name || ""}
+          />
+
+          <UU5.Forms.Text
+            name={"subject"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
+
+            value={props.selectedGrade?.subject || ""}
+          />
+
+          <UU5.Forms.Text
+            name={"term"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.term} />}
+
+            value={props.selectedGrade?.term || ""}
+          />
 
           <UU5.Bricks.Line size={"s"} />
           <UU5.Forms.Controls

@@ -51,32 +51,32 @@ export const Left = createVisualComponent({
           items={[
             { id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> },
             {
-              id:"subjectList",
-              href:"subjectList",
-              content:<UU5.Bricks.Lsi lsi={Lsi.left.subjectList} />
-          },
-          {
-            id:"assignmentList",
-            href:"assignmentList",
-            content:<UU5.Bricks.Lsi lsi={Lsi.left.assignmentList} />
-        },
-        {
-          id:"termList",
-          href:"termList",
-          content:<UU5.Bricks.Lsi lsi={Lsi.left.termList} />
-      },
-      {
-id:"personList",
-href:"personList",
-content:<UU5.Bricks.Lsi lsi={Lsi.left.personList} />
+              id: "termList",
+              href: "termList",
+              content: <UU5.Bricks.Lsi lsi={Lsi.left.termList} />
+            }, {
+              id: "subjectList",
+              href: "subjectList",
+              content: <UU5.Bricks.Lsi lsi={Lsi.left.subjectList} />
+            },
+            {
+              id: "assignmentList",
+              href: "assignmentList",
+              content: <UU5.Bricks.Lsi lsi={Lsi.left.assignmentList} />
+            },
+            {
+              id: "gradeList",
+              href: "gradeList",
+              content: <UU5.Bricks.Lsi lsi={Lsi.left.gradeList} />
+            },
+            {
+              id: "personList",
+              href: "personList",
+              content: <UU5.Bricks.Lsi lsi={Lsi.left.personList} />
 
-      },
-      {
-        id:"gradeList",
-        href:"gradeList",
-        content:<UU5.Bricks.Lsi lsi={Lsi.left.gradeList}/>
-      },
-        ]}
+            },
+
+          ]}
 
         />
       </Plus4U5.App.Left>

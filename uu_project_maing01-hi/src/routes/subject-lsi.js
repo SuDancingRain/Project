@@ -12,4 +12,5 @@ export default {
     degree: { cs: "Titul", en: "Degree" },
     supervisor: { cs: "Učitelé", en: "Supervisors" },
     language: { cs: "Jazyk", en: "Language" },
+    assignmentList:{cs:"List úkolů",en:"List of Assignments"},
 }

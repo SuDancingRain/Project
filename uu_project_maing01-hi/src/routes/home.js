@@ -88,12 +88,6 @@ export const Home = createVisualComponent({
         <WelcomeRow textPadding="14px" icon="mdi-human-greeting">
           <UU5.Bricks.Lsi lsi={Lsi.auth.intro} />
         </WelcomeRow>
-        <WelcomeRow textPadding="10px" icon="mdi-monitor">
-          <UU5.Bricks.Lsi lsi={Lsi.auth.clientSide} />
-        </WelcomeRow>
-        <WelcomeRow textPadding="8px" icon="mdi-server">
-          <UU5.Bricks.Lsi lsi={Lsi.auth.serverSide} />
-        </WelcomeRow>
 
         <UU5.Bricks.Image src="../assets/team7.png" />
       </div>

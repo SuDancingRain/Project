@@ -4,6 +4,7 @@ import { createVisualComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
 import Lsi from "../routes/assignment-lsi"
+import GradeDataList from "./grade-data-list"
 //@@viewOff:imports
 
 const STATICS = {
@@ -13,7 +14,8 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-export const AssignmentForm = createVisualComponent({
+export const AssignmentForm = GradeDataList(
+createVisualComponent({
   ...STATICS,
 
   //@@viewOn:propTypes
@@ -48,19 +50,27 @@ export const AssignmentForm = createVisualComponent({
       assignmentListData.data.forEach((assignment) => {
         assignmentAvailableTags.push({
           value: assignment.data.id,
-          content: assignment.data.activity,
+          content: assignment.data.name,
           content: assignment.data.description,
           content: assignment.data.dateOfTerm,
           content: assignment.data.deadline,
           content: assignment.data.requirements,
           value: assignment.data.capacity,
           content: assignment.data.supervisor,
-          content: assignment.data.subject,
-          content: assignment.data.term,
+          content: assignment.data.gradeList
         });
       });
     }
 
+    const gradeAvailableTags = [];
+    if (props.data) {
+      props.data.forEach((grade) => {
+        gradeAvailableTags.push({
+          value: grade.data.id,
+          content: grade.data.uuIdentity,
+        });
+      });
+    }
 
     async function handleOnSave(opt) {
       opt.component.setPending();
@@ -98,64 +108,67 @@ export const AssignmentForm = createVisualComponent({
           onCancel={() => props.setSelectedAssignment(null)}
         >
           <UU5.Forms.Text
-            name={"activity"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.activity} />}
-            value={props.selectedAssignment?.activity || ""}
+            name={"name"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.name} />}
+            value={props.selectedAssignment?.name || ""}
           />
 
           <UU5.Forms.Text
             valueColWidth={"xs-15 s-15 m-11 l-10 xl-10"}
             name={"description"}
             label={<UU5.Bricks.Lsi lsi={Lsi.description} />}
+            
+            value={props.selectedAssignment?.description || ""}
 
 
           />
           <UU5.Forms.DatePicker
             name={"dateOfTerm"}
             label={<UU5.Bricks.Lsi lsi={Lsi.dateOfTerm} />}
+            
+            value={props.selectedAssignment?.dateOfTerm || ""}
 
           />
           <UU5.Forms.DatePicker
             name={"deadline"}
 
             label={<UU5.Bricks.Lsi lsi={Lsi.deadline} />}
+            
+            value={props.selectedAssignment?.deadline || ""}
           />
 
           <UU5.Forms.Text
             valueColWidth={"xs-15 s-15 m-11 l-10 xl-10"}
             name={"requirements"}
             label={<UU5.Bricks.Lsi lsi={Lsi.requirements} />}
+            
+            value={props.selectedAssignment?.requirements || ""}
 
 
           />
           <UU5.Forms.Number
             name={"capacity"}
             label={<UU5.Bricks.Lsi lsi={Lsi.capacity} />}
+            
+            value={props.selectedAssignment?.capacity || ""}
 
           />
           <UU5.Forms.Text
             name={"supervisor"}
             label={<UU5.Bricks.Lsi lsi={Lsi.supervisor} />}
+            
+            value={props.selectedAssignment?.supervisor || ""}
 
           />
 
-          <UU5.Forms.Select
-            name={"subject"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.subject} />}
+          <UU5.Forms.TagSelect
+            name={"gradeList"}
+            label={<UU5.Bricks.Lsi lsi={Lsi.gradeList} />}
+            value={props.selectedAssignment?.gradeList || []}
+            availableTags={gradeAvailableTags}
+            multiple
+          />
 
-          >
-            <UU5.Forms.Select.Option value="bachelors" />
-            <UU5.Forms.Select.Option value="masters" />
-          </UU5.Forms.Select>
-
-          <UU5.Forms.Select
-            name={"term"}
-            label={<UU5.Bricks.Lsi lsi={Lsi.term} />}
-
-          >
-            <UU5.Forms.Select.Option value="english" />
-            <UU5.Forms.Select.Option value="czech" />
-          </UU5.Forms.Select>
 
           <UU5.Bricks.Line size={"s"} />
           <UU5.Forms.Controls
@@ -169,6 +182,7 @@ export const AssignmentForm = createVisualComponent({
     ) : null;
     //@@viewOff:render
   }
-});
+})
+);
 
 export default AssignmentForm;

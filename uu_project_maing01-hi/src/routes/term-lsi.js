@@ -8,5 +8,5 @@ export default{
 
     year:{cs: "Rok", en: "Year"},
     termSeason:{cs: "Pololetí", en: "Term"},
-    subject:{cs: "Předměty", en: "Subjects"},
+    subjectList:{cs: "List předmětů", en: "List of Subjects"},
 }
